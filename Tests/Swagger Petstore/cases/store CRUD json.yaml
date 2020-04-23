@@ -3,11 +3,11 @@ name: store CRUD json
 description: <insert description of test case>
 casedetails:
   vars:
-    $id: $genInteger(70,320)
-    $petId: $genInteger(32,423)
-    $quantity: $genInteger(73,626)
-    $shipDate: $genString(8)
-    $status: $genString(6)
+    $id: $genInteger(68,609)
+    $petId: $genInteger(91,464)
+    $quantity: $genInteger(66,404)
+    $shipDate: $genString(7)
+    $status: $genString(9)
   defaultCollection: Swagger Petstore
   steps:
   - name: placeOrder json

@@ -3,9 +3,9 @@ name: pet CRUD json
 description: <insert description of test case>
 casedetails:
   vars:
-    $id: $genInteger(56,824)
-    $name: $genString(8)
-    $status: $genString(8)
+    $id: $genInteger(93,297)
+    $name: $genString(6)
+    $status: $genString(5)
   defaultCollection: Swagger Petstore
   steps:
   - name: addPet json

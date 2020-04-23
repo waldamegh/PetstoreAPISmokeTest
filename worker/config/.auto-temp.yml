@@ -1,0 +1,11 @@
+connection:
+  access_token: NWVhMTQ3MTctZjUzMy0xYWRlLWEzNTYtZWZjMS04ZmMyOWJjZjoxNzNkZGQ4MC04NTM2LTExZWEtOGJjZC01ZDNlMmQ1ZDc1NTQ=
+  master_host: apimation.com:9000
+worker:
+  type: b2f8be82-8537-11ea-8f47-60571827d0da
+  port: 9675
+  job_limit: 200
+  debug: false
+  dev: false
+  logOnlyToFile: true
+  log_path: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest/worker/logs/worker

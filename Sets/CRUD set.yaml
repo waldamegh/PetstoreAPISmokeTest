@@ -1,14 +1,14 @@
 test: set
 name: CRUD set
-description: PetstoreAPI Smoke Test
+description: <insert description of test set>
 cases:
+- user CRUD json
 - pet CRUD json
 - store CRUD json
-- user CRUD json
 - pet CRUD xml
+- user CRUD urlencoded
 - pet CRUD urlencoded
 - store CRUD urlencoded
-- user CRUD urlencoded
 - pet CRUD form-data
 parallel: false
 clientversion: ""

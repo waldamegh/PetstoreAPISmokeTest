@@ -3,13 +3,13 @@ name: user CRUD json
 description: <insert description of test case>
 casedetails:
   vars:
-    $email: $genString(7)
-    $firstName: $genString(6)
-    $id: $genInteger(16,376)
+    $email: $genString(5)
+    $firstName: $genString(5)
+    $id: $genInteger(41,973)
     $lastName: $genString(8)
-    $password: $genString(6)
+    $password: $genString(7)
     $phone: $genString(5)
-    $userStatus: $genInteger(77,464)
+    $userStatus: $genInteger(24,676)
     $username: $genString(8)
   defaultCollection: Swagger Petstore
   steps:

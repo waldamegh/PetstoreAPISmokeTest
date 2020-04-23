@@ -3,9 +3,9 @@ name: pet CRUD xml
 description: <insert description of test case>
 casedetails:
   vars:
-    $id: $genInteger(36,541)
-    $name: $genString(6)
-    $status: $genString(8)
+    $id: $genInteger(22,581)
+    $name: $genString(7)
+    $status: $genString(9)
   defaultCollection: Swagger Petstore
   steps:
   - name: addPet xml
