@@ -40,7 +40,6 @@ Temporary Items
 # End of https://www.gitignore.io/api/macos,visualstudiocode
 
 # StoreAPI testing for SIGNAL 2018
-Reports
 worker/logs
 testEngineWorker
 testengineworker*

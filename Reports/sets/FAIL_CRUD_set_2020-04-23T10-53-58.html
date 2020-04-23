@@ -1,0 +1,779 @@
+<html><title>CRUD set report</title><meta charset=utf-8><link rel="shortcut icon" href=http://apimation.com/favicon.ico><script src=https://code.jquery.com/jquery-1.11.3.min.js></script><style>*{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.sharedReportHeaderField{width:16%!important}.reportStepList{background:#f8f8f8}html,body{-ms-overflow-style:scrollbar}html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,figure,footer,header,menu,nav,section,menu,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;vertical-align:baseline;background:0 0;font-family:sans-serif}article,aside,figure,footer,header,nav,section{display:block}.versions{font-size:10px;color:#acacac;padding:10px 5px}nav ul{list-style:none}a{margin:0;padding:0;font-size:100%;vertical-align:baseline;background:0 0}input,select{vertical-align:middle;background-color:#e3e3e3}select,input,textarea{font:99% sans-serif;outline:none;background-color:#fafafa;padding-left:.3em;margin-bottom:.1em}h1,h2,h3,h4,h5,h6{font-weight:lighter}html{-webkit-font-smoothing:antialiased}a:hover,a:active{outline:none}a,a:active,a:visited{color:#013973;text-decoration:none}a:hover{color:#013973;text-decoration:none}a:link{-webkit-tap-highlight-color:#ff5e99;text-decoration:none}html{overflow-y:scroll}button{width:auto;overflow:visible}input:focus,textarea:focus{border:#7da068 solid 1px!important}input:hover,select:hover,textarea:hover{}ul,ul li,ol,ol li{display:block;list-style:none}label{cursor:default;font-family:inherit;font-weight:400;padding-top:.25em}html,body{width:100%;padding:0;margin:0;background-color:#eff2ef;line-height:1;font-size:100%;overflow:auto;font-family:Open Sans}a:focus,a:focus *{outline:none;text-decoration:none}.css3{position:relative}.stepDetailed{overflow:hidden;border-bottom:1px solid #ddd;display:none}ul#reportCaseListView{margin:0 auto;width:60%}li.reportStep{overflow:hidden;border-bottom:none}.reportStep span{}.stepDetailedLeftSide{float:left;border-right:1px solid #ddd;color:#747474;width:7em}.stepDetailedRightSide{margin-left:7em;color:#505c59;max-height:40em;overflow:auto}.stepDetailedRightSide>div{padding:1em}.stepDetailedRightSide .tab-body-item-text{font-weight:700;margin-bottom:.2em}.assertItem{border-bottom:1px solid #ddd;overflow:hidden;margin:.5em 1em;position:relative;margin-top:0;padding:.5em 0;padding-bottom:0}.assertItem p{padding:.5em 0;font-size:.9em;margin-right:6em}.assertItem div.PASS{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsSAAALEgHS3X78AAABqklEQVQ4y6WUzStEURjGf3MwxNQtCxZE1ISUnY+FxSQsriSlLDFlYecjZW1LRlnc3YyQhT9gFnMR28FGRJHVhI3F5CsXcy3OvZO5bnOn8ezOe3qf8/Sc93l9uGAmPtAGhIFBoBXwAwZwDSSAqKbqV84+n4NEASLApPPOARPYBOY0VU//IZuJD9QDh0CQwnED9GmqnsqSWYpOCiEqFaWUlVTw/vnym7BTU/W0sAqRQhWNtkwz0bH4uxS0+vFZZl96eASAUl7NcmiL7fNVTh+OnB62C+SveRIBDDaP8/T2yNnjsfPKB4QF8vs9oZRX09swRPx2B9M0Xd8SyDn6jyobrQI5kDmoqaqjsiyQPQf8ipcqAL9ATnYOhoOTzHevEfArAPQ3jXmpAjAEMiI52L1Yx8h8MNu1Qm1VPaHGERJ3e/lUAVwLZNZy8P71ykZyCSPzwUJPhGcjTfL+wMvWhACiyDlxJfw2v0je75Mxv/MRmUDUjlMUmPJ6Og9imqqH7TjNITNWDG6sfgSAtUb6iiC0t0Y6S2YRpoBOIObmoYtHMeS2SNlF10wWu2l/AA+nnJ+TXzHUAAAAAElFTkSuQmCC)no-repeat 50%}.assertItem div.FAIL{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsSAAALEgHS3X78AAABsklEQVQ4y62UsUrDUBSGv7S3pS516BKoS4cGJSA4lAxupYpThT5Arb6BYHFw7uTgG6j1AQS30oqTS3AQh6LUwcVAQUqpi1K1dci9ksYmqPhv95x7v4Rzzn80pqibthaALWAVmAfiwBC4A5rAoe7Yt/53mg8yCxwAFX/OpzFwDGzrjj34BuumrTngAsjyc90Ded2xH79g8o+ufgnyAnO6Yw8iMnCgQFoshjCN0NfCNNBiMXXMyvdEZLErKhM1MqQadWbKpamgmXKJVKNO1Mh4w5Vu2lqI7iTndoFlFR099Rj1+iRrVUa9Pu83txOgZK3K894+w/NLL0wDXgRu+yf0cnIKQLJW/Tp7QSrv06rAnSPCgHFriUSxEAYCmBe4A0kQMG4tkVhf4fWsFQYCiEdwJzuw2IligdezFoliIbApUkOBa5HFaSBvjYb29UQNp+hO4HptMQwU1BSfmpqcs7ZsL8I0SDXqgcVWH+qtbfDe7qjwGDCVnQ6BTXAdEDUy3ovfJEyDj84D47c3FTrSHXvr/70p10heJn4Lyqs1pIyOXCM54EjWIExjeS+n1g8ELMC/btpPd9S1cSd8bH8AAAAASUVORK5CYII=)no-repeat 50%}.assertItem div{position:absolute;width:5em;height:100%;top:0;right:0}.stepDetailsTile{height:6em;border-top:1px solid #ddd;cursor:pointer;position:relative}.stepDetailsTile p{text-align:center;position:absolute;bottom:.5em;width:100%;padding:.2em}.stepDetailsTile.active{background-color:#25bd3d;color:#fff}#reportsBox header{margin:0 2em;height:7em}.reportHeaderField{float:left;height:4em;border-left:.35em solid #0f5f0e;padding-left:.8em;padding-right:.8em;position:relative}.reportHeaderField h3{padding-top:.3em}.reportHeaderField span{display:block;padding-top:.3em;margin-right:1em}#reportSetName{width:40%}#reportSetDate{width:25%}#reportSetCasesNum{width:15%}#reportSetPassRate{width:10%;border-left:.35em solid #d87413}#reportSetRunStatus{width:10%;border-left:.35em solid #d87413}#reportSetRunStatus h3{font-size:1.4em}#reportSetRunStatus button{border:none;background:#52a4db;color:#fff;margin-top:.4em;border-radius:3px;padding:.2em .9em}#setReportView{margin:1em 2em;position:relative}.reportControlView{height:2em}.reportControlView>.order{float:right;padding-right:1em}.reportCaseListView{border:1px solid #ddd;border-bottom:none;background:#fff}.reportCaseView{border-bottom:1px solid #ddd}.reportOneCaseView{border:1px solid #ddd;border-bottom:none;background:#fff;margin:0 2%;padding-bottom:1em}.caseName{float:left;width:60%}.caseName h3{padding-top:.3em}.caseName span{display:block;padding-top:.3em}.caseTime{float:left;width:20%}.caseTime h3{padding-top:.3em}.caseTime span{display:block;padding-top:.3em}.caseStatus{float:right;padding-top:.3em;height:1.7em;border-radius:6px;color:#fff;font-weight:700;text-align:center;margin-right:1em;width:5em;margin-top:.8em}.caseStatus.FAIL{background:#ec4343}.caseStatus.PASS{background:#25bd3d}#setRunHistoryListWrapper{width:100%;background:0 0;box-shadow:0 0;color:#000;font-size:1.2em;padding:.25em 0}#setRunHistoryListWrapper:after{border-color:#000 transparent}.reportStepList{clear:both;border:1px solid #ddd;background:#faf8f8;border-bottom:none;margin:1em;margin-top:0;display:none}.reportStepHeader{border-bottom:1px solid #ddd;padding:.7em 1em;overflow:hidden;cursor:pointer}.stepStatus{float:right;width:4em;border-radius:6px;color:#fff;font-weight:700;text-align:center;font-size:.9em;margin-right:.7em;padding:.2em 0}.stepStatus.FAIL{background:#ec4343}.stepStatus.PASS{background:#25bd3d}.reportStepName{float:left;width:60%}.reportStepRtt{float:right;margin-right:1em;margin-top:.1em}.assertsTile{border-top:none;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAlCAYAAABReInxAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsSAAALEgHS3X78AAACzUlEQVRYw7WXTUhUURiGn5kRLU2UMmhV9mPSIoiCWvUf5aaNEC+4dNkiiDZpbowENy1ctRFsE/QJIkEGQUXCBEULC42SqBat+gENavxJZ1rcc8d7J3VGOPeF4XDmnHue+57vfOecmzKzJuAucAGoIhnlgedAZxVwDzifEChUGjgDjFRFYIeA70DKE2RWUs7MMkAzMA0cKU6hpLe+bZlZBzAm6ZOZLQGZNFBwjY2eYSME4Xrg/lqGYG5DLXiEnQXaXXXUlRlYWZXzwDYz6wVaKhjzkaT+ddrvu3Ja0oCZpUJzIXABaAA6KzSxHeg3s1rgIZCXdM65GwCaXL+LriyGLgQ2AJ+B3cAugrxZTSn34DtXbwROO9B1YBi44tp6JX38bwAzy7uB6iX93lCwAlAf0O2qOaAW+CppZ6RPxrVVhw4XgS1m1gW0hvbXcfhY0iCApBtm1gYcdjCAS2u9YAjMuXnvpjIdBQYj9TaCTQNgSNKrcsBG4It7yz0VOHwd/VPSDzM7DpySdGu9N41u1gVJE8BEhS5jkpQFsuX6RWPYYGY3CWKYL/dgBUoDS8Bt4EUpcA7YClzzACrVe0lZMytAPC3qgL3APk8OU87hU4KNZY5IWgDUSJoEJn1bNLMiJwqcN7MW57Cw4VHXdjjuyhhwliAdpny7A/ok9ZhZDLjZQe8A+z07fOZOixiwBpiRdDkBh+FeCsQP4OokYBG3MYcAi2Z2jOAA9jmlY8CfUuAvgpvVywTc9UvqWm3R/AT6gIOeHY6utmiqgZykngQcxhI/umj+JgFzKs5YdPPeYWZDwAGPoDxwVdJwaQyXgE3ACdz90aOao5UQWE9w4je5Dt4WjaQpMyuGLpqHdZJmgDeeHYZwIL5ofLgqq3RIlzSbFETSMiU3b8ysFfhW4tqH8gT31eLHzDhwEviQlMOIJtNAB/CElcQveP5B8G2YBdr/AUDU+mTVGaz5AAAAAElFTkSuQmCC)no-repeat 50% 34%}.assertsTile.active{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAlCAYAAABReInxAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsSAAALEgHS3X78AAACfklEQVRYw72Xv2tTURTHP6ep1dZCVSpKlwZNrT9BXHQQFQT/CP8HEXFys9Kii4OTi9S9IC4qFG2pqINIJ5XSwUHFwR9ol7RpE9/X4Z0Xbl+TmoT3eiC83Psu55vPPeeec4OkQUlPJFWVn/2VNCNp2CRNA5fYGps3SfLBSeAHYBk5XzKzZUkFoAgsAgUS5jxwJF2WNODfK5KEpMg1d2Us9sj9zvm4nBbszVDsYpAwV0NCkxQBq8AIMObP/9kzM7uzieBPYBBYNLPDksw1tiWES5KOtZHmC+64T9KspBeB2L1g3YjPFSSthoQG9AH7gGEgavLjDRDw0cx+SxoCvvm7G8AU8MnHY2Z2MxEEloGeMIb9HcZrIiAq+/NLas0GwqqTXQFGnWIzwmkzexA4nAdOBevOmNnbUDBN+EfS8TZi+DlFsDd4N9lgFxrGsB84BBxogfCdmX1NOT0LXDCz8UaCjWLY10kMW4xznbDb59aAAUm3PIZR5+7r1gXUgLvAm2QyEVwB9gDXcwBcMLPXSb0OY7gTOAiUMiI0J5whrjIrpGK4Owc6ACR1p2MIUPFSVKJ5lnZC+NKfdfXkHLZTS9uxcddZR9gLLAH3ic9iloSzirvFOsItO4ddwXxPXoIE96QwadYknSZuwFlu6VOgHOImDfhoTklz23U2JM0vYAI4kTHh42ZJ01EDbsXCgx8mTTUvQYIdC4v3fkkPgSMZCkXANTOb8tpdF6wBO4BzQCFjumI4CLvFduKbW5EMk8bMPnjotrRbNKw0ufyhaaSupBvnrFNZ1w8ljQLfie8iWVpEnBsFiJNmDjifN6HbeyQNSXouac13N8r4I0k1Sa8klf4BHPEKIxZm5jQAAAAASUVORK5CYII=)no-repeat 50% 34% #25bd3d}.requestDataTile{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAhCAYAAADZPosTAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsSAAALEgHS3X78AAABX0lEQVRIx+2W0ZGCQAyGPxgbsAVbwBKwBCcdYAuWICVIBzlLkBKOErQFW7iHy3qBAZfFe7iH+2d2xjDLt0k2iWRMSFVLYA8UtoI6W62IXIbvZSOgAjgBJXF1wEFEulGgqlbAefBSawtgbQd5jx/AUUSaHtBCvLqNNVCLyGMkio0d7KPYikiX2YY1cDMPsDCaWLyqegaqEL6IbHMzKger58AAROQA3M0sVLX0wJCPeg5skJqgIrd8bOzBZSxnEfnSKXP6N3ZPhDF0IHfewXddvaWV5S3UWWq4qOremW2WChgB+tLZvQUcNEOvDpfA1sCHe3SA70tZCrvS76xuEdCm0Sc/5db4zkrKocG8Z421H8lAF2YxBUsN+RSDzfbQ+v1mZisiu6m9cz2s3O/jq41zgc8B4v8/3gGGUR8dHql1GB0ei1vvX09FC9u+JvxUPr4qndWMQ8Pnh7cn9eu3/PeBX57QdW9CAlSEAAAAAElFTkSuQmCC)no-repeat 50% 34%}.requestDataTile.active{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAhCAYAAADZPosTAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsSAAALEgHS3X78AAABIElEQVRIx+2WzXWDMBCEZ3lugBbcglqgBbdAC3YJbkFpBZeAS0hKgBImh0jJREaxFHHIIfMeB/3sJ3a1uwBkRHIg6UnO/K45zJ9QIpKO5MQyzSSd2lsCGwH45IxbeACgBzAAUMgK4GJmL1suqq4k+4wXxw0vnG7oSS6yOBaGx6v7unDWNysK9pftq9gO6eSSc/MH4CjAc4xHlK+BSbiipi65sbdaoJmtOu4AHGV8rwWmOuAjj2KerbWApGJutfZbQP9wyw0wLYa5FZYWg2uFaRcqqqwczCXVUZ27KWzZC5a6+XtYAPo9YVrvUxMsAK+7pIcAP7tzMywAi6uhq2Q/bR61wH89yp5tCJ1Eu/LFzLKfikPBofH3Q8dZ7X7Lfx/4DqWnz2/qIuekAAAAAElFTkSuQmCC)no-repeat 50% 34% #25bd3d}.responseDataTile{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAXCAYAAADz/ZRUAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsSAAALEgHS3X78AAACn0lEQVRIx7XWW4jVVRTH8c9MM9JDxkAF3UiCgpIIkcaSoKHALhBFOPAzFCJ6CJIhH6UXFaYCCx8qiOjmU7VRyowuGElokEFF0UshvRjdIa3MZPLSw39PHE//4RxP03rcl/Vdt73WHjKAlFIux0PYnuTNQXTAyADgSbyAhbgK/z+8lDKKx/Bgx/LooGAY7hN8MfZU8E+Y/C/Qvj0vpdyMl3AOPkBwZD7gc3peShkupWzE2xX8OG5M8t18gOf0vJRybvV2BX7FvUlemy/orAy1gJdjGy7CZ5hM8nXXmYX4DSc0NfAtPsU+vJXkh9OGl1LWaSp6BM9hKsnROaKzBbfiAox1bB3HLmxO8n5PePXkRazEn3ggydZ+w1dKGcMyTGA1FtWtd3B/kgOt8FLKFXgDl2E/Vib5ol9wiyHDuAMPYzF+x31JtrXBX8YqfI/FSQ4NCu4yYgTrsUGTxqkkT3WeGcbTOKjJ3eullAvnA57kWJJp3I4/8GQp5e5TPK9WXoKC6/Az1iTZ1cOz2zCuqfpDNXIHsD/Jsa6zt2hS+xeWJvnqH3g9MIrNWIeTmMamJMdbwGfiMM5osesoPtIU244kX9Y76/Eo9ia54RR4h+K7NFNrDLuxuvvd1uo+iG9qTs/D+ZqivaamcFb2Ygt24hMswZ1Jdv4LXpVfWtMwjh+rAe+1wD9PsqTl/pU112twdV3+EK9q+sieJBOt8KpgQbV4raaTbcJ0khO94F16bsIjuBYzWFC3Fg3pIfXz8DzOxrvVm5l+4VXHEKY0w2n2D7C25zxPsh1LNb17habfT/S616XjZJInNO14pi4v7+szUQfL9XhGU0w7TgfeoWc37sEv2Ncz7C0hXIVncRY+TjI+iCH0+Y3qsv4VTRq2YuOgYPgbnSHulYP2Q1UAAAAASUVORK5CYII=)no-repeat 50% 26%}.responseDataTile.active{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAXCAYAAADz/ZRUAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsSAAALEgHS3X78AAACBElEQVRIx73WT4iNURjH8ecdM5rN1CwkTZrSpMbCRik2EkVSmFCUBZZIFmgWkpSVwsJCLCwspKwoakoxCvmTsaCYjSYZ8m8METPjY+Hcer3de2funT/P9vx+v+9z3vc5pxNRR2EhLmJ9Pf66C1sw7F89miloE874v/pmAjwf9xPwPTbPCBxr8DHB7qINrdMKRwOOYSyBTqIxrU0fHHPQkwBD6CqsTw8cy/EmhT9FRxlNS1ofwyAe4zx2Y1694AMYScEX0FxFewov8KVwAkZxAysnCm3B1WT+gZ01Nt2aBvMEXucauYn2asZO9CfxKyye5G9rwCY8T5nD2FpJfDmJ3qJ1MuBCbiOO5H7jvnKiFficBHfQNlUNpPy1+J7yt+fXsiRoj4grEbEsIj5ExI4sy3rGCV0XEUsjYjgihiJiMCIGIqI/y7LRYgMRcT0iRiJiSZZlL4thTTidOvyD45hVAdycprpc/cRtdKMz5+lO673VdtSVOz63yp3b3CUzgF04nI7etTQ7+epNA9iQ7g3YUK2BBXiYhO+wugK8r4J/EQ7hWa6JezhYmq3xBmU2zuZusqNomAi8kLMKD5L+V66Z9vG8pcfD12Towdxa4Ckjw378zsH3TMQb6MCT3H2wsRZ44SuUdn+pFmMzzhWGqSZ4ytmGT9hbq7dk/pbgM/OGKzQwJa/Xv4tdWCKUW8lbAAAAAElFTkSuQmCC)no-repeat 50% 26% #25bd3d}.reportCaseHeader{overflow:hidden;cursor:pointer;padding:1em}#reportWarningForCase{font-size:1.5em;margin:25% auto;width:50%;text-align:center}.sharedReportHeader{margin:0!important;padding:1em 2em;height:7em!important}.sharedReportHeaderField{width:15%!important}#shareReportContainer{float:right;margin:2em 0;margin-bottom:0;text-decoration:underline;position:relative}#shareReportContainer a{cursor:pointer!important}#shareReportContainer input{margin-left:.5em;border:1px solid #cecece;padding:.2em;width:20em}.requestDataSection{display:none}.responseDataSection{display:none}.stepDetailedRightSide{max-height:24em}.limiter{max-height:18em}.caseVarsCollectionView{display:none}.listVarsCollectionView{display:none}.grepCollectionView{display:none}.grepsTile{background:url(https://www.apimation.com/static/images/reports/grep_gray.png)no-repeat 50% 34%}.grepsTile.active{background:url(https://www.apimation.com/static/images/reports/grep_white.png)no-repeat 50% 34% #25bd3d}.caseVarsTile{background:url(https://www.apimation.com/static/images/reports/case_gray.png)no-repeat 50% 34%}.caseVarsTile.active{background:url(https://www.apimation.com/static/images/reports/case_white.png)no-repeat 50% 34% #25bd3d}.globalVarsTile{background:url(https://www.apimation.com/static/images/reports/global_gray.png)no-repeat 50% 34%}.globalVarsTile.active{background:url(https://www.apimation.com/static/images/reports/global_white.png)no-repeat 50% 34% #25bd3d}.listVarsTile{background:url(https://www.apimation.com/static/images/reports/list_gray.png)no-repeat 50% 34%}.listVarsTile.active{background:url(https://www.apimation.com/static/images/reports/list_white.png)no-repeat 50% 34% #25bd3d}.prettyJSONButton{display:none;margin:1em;position:absolute;right:0;bottom:0}.string{color:#468746}.number{color:#495486}.boolean{color:#2f2fd5}.null{color:#b20bb2}.key{color:#b25e59}</style><script>$(function() {
+  $(".reportCaseHeader").on("click", function(e) {
+    $(this)
+      .parent()
+      .find(".reportStepList")
+      .toggle();
+  });
+
+  $(".reportStepHeader").on("click", function(e) {
+    $(this)
+      .parent()
+      .find(".stepDetailed")
+      .toggle();
+  });
+
+  $(".stepDetailsTile").on("click", function(e) {
+    var tile = $(this);
+    tile.addClass("active");
+    tile.siblings().removeClass("active");
+  });
+
+  $(".globalVarsTile").on("click", function() {
+    var section = $(this)
+      .closest(".stepDetailed")
+      .find(".globalVarsCollectionView");
+    section.siblings().hide();
+    section.show();
+  });
+
+  $(".caseVarsTile").on("click", function() {
+    var section = $(this)
+      .closest(".stepDetailed")
+      .find(".caseVarsCollectionView");
+    section.siblings().hide();
+    section.show();
+  });
+
+  $(".listVarsTile").on("click", function() {
+    var section = $(this)
+      .closest(".stepDetailed")
+      .find(".listVarsCollectionView");
+    section.siblings().hide();
+    section.show();
+  });
+
+  $(".assertsTile").on("click", function() {
+    var section = $(this)
+      .closest(".stepDetailed")
+      .find(".assertCollectionView");
+    section.siblings().hide();
+    section.show();
+  });
+
+  $(".grepsTile").on("click", function() {
+    var section = $(this)
+      .closest(".stepDetailed")
+      .find(".grepCollectionView");
+    section.siblings().hide();
+    section.show();
+  });
+
+  $(".requestDataTile").on("click", function() {
+    var section = $(this)
+      .closest(".stepDetailed")
+      .find(".requestDataSection");
+    section.siblings().hide();
+    section.show();
+  });
+
+  $(".responseDataTile").on("click", function() {
+    var section = $(this)
+      .closest(".stepDetailed")
+      .find(".responseDataSection");
+    toggleJsonButton(section);
+    section.siblings().hide();
+    section.show();
+  });
+
+  $(".prettyJSONButton").on("click", function() {
+    var rawDataElement = $(this)
+      .parent()
+      .find(".rawData")[0]
+      .getElementsByTagName("code")[0];
+    var jsonDataElement = $(this)
+      .parent()
+      .find(".prettyJson")[0]
+      .getElementsByTagName("code")[0];
+    if (rawDataElement.style.display === "none") {
+      rawDataElement.style.display = "unset";
+      jsonDataElement.style.display = "none";
+      $(this)[0].innerHTML = "Format JSON";
+    } else {
+      var rawData = rawDataElement.textContent;
+      var header = rawData.slice(0, rawData.search(/^$/gm));
+      jsonDataElement.innerHTML =
+        header +
+        "<br />" +
+        syntaxHighlight(JSON.stringify(getJson(rawData), null, 4));
+      rawDataElement.style.display = "none";
+      jsonDataElement.style.display = "unset";
+      $(this)[0].innerHTML = "Show raw response";
+    }
+  });
+
+  $(".case-order-select").on("change", function() {
+    if (this.value == "order") {
+      $(".caseList .case").sort(sort_by_order).appendTo('.caseList');
+    } else if (this.value == "time_asc") {
+      $(".caseList .case").sort(sort_by_time_asc).appendTo('.caseList');
+    } else if (this.value == "time_desc") {
+      $(".caseList .case").sort(sort_by_time_desc).appendTo('.caseList');
+    } else if (this.value == "fail_first") {
+      $(".caseList .case").sort(sort_by_result_fail).appendTo('.caseList');
+    } else if (this.value == "pass_first") {
+      $(".caseList .case").sort(sort_by_result_pass).appendTo('.caseList');
+    }
+
+    function sort_by_order(a, b) {
+      return ($(b).data('order')) < ($(a).data('order')) ? 1 : -1;
+    }
+    function sort_by_time_asc(a, b) {
+      return ($(b).data('time')) < ($(a).data('time')) ? 1 : -1;
+    }
+    function sort_by_time_desc(a, b) {
+      return ($(b).data('time')) > ($(a).data('time')) ? 1 : -1;
+    }
+    function sort_by_result_fail(a, b) {
+      return ($(b).data('result')) < ($(a).data('result')) ? 1 : -1;
+    }
+    function sort_by_result_pass(a, b) {
+      return ($(b).data('result')) > ($(a).data('result')) ? 1 : -1;
+    }
+  })
+});
+
+function syntaxHighlight(json) {
+  json = json
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+  return json.replace(
+    /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
+    function(match) {
+      var cls = "number";
+      if (/^"/.test(match)) {
+        if (/:$/.test(match)) {
+          cls = "key";
+        } else {
+          cls = "string";
+        }
+      } else if (/true|false/.test(match)) {
+        cls = "boolean";
+      } else if (/null/.test(match)) {
+        cls = "null";
+      }
+      return '<span class="' + cls + '">' + match + "</span>";
+    }
+  );
+}
+
+function stringToJson(string) {
+  var objCount = 0;
+  var objStartIndexes = [];
+  var objEndIndexes = [];
+  string.split("").forEach((char, i) => {
+    if (char === "{") {
+      if (!objCount) {
+        objStartIndexes.push(i);
+      }
+      objCount++;
+    } else if (char === "}") {
+      objCount--;
+      if (!objCount) {
+        objEndIndexes.push(i);
+      }
+    }
+  });
+  var objStrArray = objStartIndexes.map((index, i) =>
+    string.substring(index, objEndIndexes[i] + 1)
+  );
+  return objStrArray.length > 1
+    ? objStrArray.map(JSON.parse)
+    : JSON.parse(objStrArray[0]);
+}
+
+function getJson(data) {
+  var objStartIndex = data.indexOf("{");
+  var arrayStartIndex = data.indexOf("[");
+  var isArray = arrayStartIndex !== -1 && arrayStartIndex < objStartIndex;
+  var objStr = data.slice(isArray ? arrayStartIndex + 1 : objStartIndex);
+  if (isArray) {
+    objStr = objStr.substring(0, objStr.lastIndexOf("]"));
+  }
+  if (objStr[0] !== "{") {
+    var arrayCount = 0;
+    var arrayStartIndexes = [];
+    var arrayEndIndexes = [];
+    objStr.split("").forEach((char, i) => {
+      if (char === "[") {
+        if (!arrayCount) {
+          arrayStartIndexes.push(i);
+        }
+        arrayCount++;
+      } else if (char === "]") {
+        arrayCount--;
+        if (!arrayCount) {
+          arrayEndIndexes.push(i);
+        }
+      }
+    });
+    var arrayStrArray = arrayStartIndexes.map((index, i) =>
+      objStr.substring(index, arrayEndIndexes[i] + 1)
+    );
+    return arrayStrArray.map(a => getJson(a, false));
+  }
+  return stringToJson(objStr);
+}
+
+function toggleJsonButton(section) {
+  var regex = new RegExp("content-type: application/json", "i");
+  var responseContent = $(section)
+    .find(".rawData")[0]
+    .getElementsByTagName("code")[0].textContent;
+  var header = responseContent.slice(0, responseContent.search(/^$/gm));
+  if (regex.test(header)) {
+    $(section)
+      .find(".prettyJSONButton")
+      .show();
+  }
+}
+</script><input id=reportShortUrl type=hidden><div id=reportsBox style=display:block><header class=sharedReportHeader><div class="reportHeaderField sharedReportHeaderField" id=reportSetName><h3>CRUD set</h3><span>Set Name</span></div><div class="reportHeaderField sharedReportHeaderField" id=reportSetEnv><h3>Staging</h3><span>Environment</span></div><div class="reportHeaderField sharedReportHeaderField" id=reportSetDate><span class=noselect>Apr 23, 2020 10:53:49 +0300 +03</span>
+<span>Execution date</span></div><div class="reportHeaderField sharedReportHeaderField" id=reportSetCasesNum><h3>8</h3><span>Total cases</span></div><div class="reportHeaderField sharedReportHeaderField" id=reportSetPassRate><h3>3/8</h3><span>Pass rate</span></div><div class="reportHeaderField sharedReportHeaderField" id=reportSetRunStatus><h3>FAIL</h3><span>Status</span></div></header><div class=reportControlView><div class=order>Ordered by
+<select class=case-order-select>
+<option value=order>execution order
+<option value=time_asc>duration ASC
+<option value=time_desc>duration DESC
+<option value=fail_first>failing first
+<option value=pass_first>passing first</select></div></div><ul class=caseList><li class=case data-time=0.002239773 data-order=0 data-result=PASS><ul class=reportCaseListView><li class=reportCaseView><div class=reportCaseHeader><div class=caseName><h3>pet CRUD json</h3><span>Case name</span></div><div class=caseTime><h3>2.239773ms</h3><span>Time to execute</span></div><div class="caseStatus PASS"><p>PASS</div></div><ul class=reportStepList style=display:none><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Variables</div></div><div class=stepDetailed style=display:none><div class=stepDetailedLeftSide><div class="globalVarsTile stepDetailsTile active"><p>Global vars</div><div class="caseVarsTile stepDetailsTile"><p>Case vars</div><div class="listVarsTile stepDetailsTile"><p>List vars</div></div><div class=stepDetailedRightSide style=max-height:18em><ul class=globalVarsCollectionView><li class=assertItem><p>$baseURL: http://127.0.0.1<li class=assertItem><p>$SYS_CLI_GDMSESSION: ubuntu<li class=assertItem><p>$SYS_CLI_GNOME_SHELL_SESSION_MODE: ubuntu<li class=assertItem><p>$SYS_CLI_TERM: xterm-256color<li class=assertItem><p>$SYS_CLI_XDG_VTNR: 2<li class=assertItem><p>$SYS_CLI_DESKTOP_SESSION: ubuntu<li class=assertItem><p>$SYS_CLI_IM_CONFIG_PHASE: 2<li class=assertItem><p>$SYS_CLI_XDG_SEAT: seat0<li class=assertItem><p>$SYS_CLI_LC_TIME: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_MANDATORY_PATH: /usr/share/gconf/ubuntu.mandatory.path<li class=assertItem><p>$SYS_CLI_OLDPWD: /home/wafa/Desktop/smoke test<li class=assertItem><p>$SYS_CLI_XDG_CONFIG_DIRS: /etc/xdg/xdg-ubuntu:/etc/xdg<li class=assertItem><p>$SYS_CLI_XDG_RUNTIME_DIR: /run/user/1000<li class=assertItem><p>$SYS_CLI_GNOME_DESKTOP_SESSION_ID: this-is-deprecated<li class=assertItem><p>$SYS_CLI_LC_TELEPHONE: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_LESSOPEN: | /usr/bin/lesspipe %s<li class=assertItem><p>$SYS_CLI_LOGNAME: wafa<li class=assertItem><p>$SYS_CLI_QT_IM_MODULE: ibus<li class=assertItem><p>$SYS_CLI_SHLVL: 3<li class=assertItem><p>$SYS_CLI_VTE_VERSION: 5401<li class=assertItem><p>$SYS_CLI_XMODIFIERS: @im=ibus<li class=assertItem><p>$SYS_CLI_APIMATION_HOME: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_CLI_CHROME_DESKTOP: code-url-handler.desktop<li class=assertItem><p>$SYS_CLI_CLUTTER_IM_MODULE: xim<li class=assertItem><p>$SYS_CLI_DBUS_SESSION_BUS_ADDRESS: unix:path=/run/user/1000/bus<li class=assertItem><p>$SYS_CLI_LS_COLORS: rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:<li class=assertItem><p>$SYS_CLI_QT_ACCESSIBILITY: 1<li class=assertItem><p>$SYS_CLI_SHELL: /bin/bash<li class=assertItem><p>$SYS_CLI_SSH_AUTH_SOCK: /run/user/1000/keyring/ssh<li class=assertItem><p>$SYS_CLI_APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: true<li class=assertItem><p>$SYS_CLI_GJS_DEBUG_OUTPUT: stderr<li class=assertItem><p>$SYS_CLI_LC_PAPER: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_LESSCLOSE: /usr/bin/lesspipe %s %s<li class=assertItem><p>$SYS_CLI_NO_AT_BRIDGE: 1<li class=assertItem><p>$SYS_CLI_USER: wafa<li class=assertItem><p>$SYS_CLI_COLORTERM: truecolor<li class=assertItem><p>$SYS_CLI_PWD: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_CLI_SSH_AGENT_PID: 3192<li class=assertItem><p>$SYS_CLI__: /home/wafa/Downloads/apimation_0.54.7_linux_amd64/apimation<li class=assertItem><p>$SYS_CLI_XDG_MENU_PREFIX: gnome-<li class=assertItem><p>$SYS_CLI_XDG_SESSION_DESKTOP: ubuntu<li class=assertItem><p>$SYS_CLI_DEFAULTS_PATH: /usr/share/gconf/ubuntu.default.path<li class=assertItem><p>$SYS_CLI_LC_NAME: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_QT4_IM_MODULE: xim<li class=assertItem><p>$SYS_CLI_DISPLAY: :0<li class=assertItem><p>$SYS_CLI_LC_IDENTIFICATION: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_GNOME_TERMINAL_SERVICE: :1.512<li class=assertItem><p>$SYS_CLI_PATH: /home/wafa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin<li class=assertItem><p>$SYS_CLI_XDG_SESSION_ID: 3<li class=assertItem><p>$SYS_CLI_GJS_DEBUG_TOPICS: JS ERROR;JS LOG<li class=assertItem><p>$SYS_CLI_LC_MEASUREMENT: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_LC_NUMERIC: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_XDG_DATA_DIRS: /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop<li class=assertItem><p>$SYS_CLI_GTK_MODULES: gail:atk-bridge<li class=assertItem><p>$SYS_CLI_HOME: /home/wafa<li class=assertItem><p>$SYS_CLI_SESSION_MANAGER: local/wafa:@/tmp/.ICE-unix/3062,unix/wafa:/tmp/.ICE-unix/3062<li class=assertItem><p>$SYS_CLI_LC_ADDRESS: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_TERM_PROGRAM: vscode<li class=assertItem><p>$SYS_CLI_XDG_SESSION_TYPE: x11<li class=assertItem><p>$SYS_CLI_GNOME_TERMINAL_SCREEN: /org/gnome/Terminal/screen/a8916d88_de23_4892_9d9a_f811c620af59<li class=assertItem><p>$SYS_CLI_GPG_AGENT_INFO: /run/user/1000/gnupg/S.gpg-agent:0:1<li class=assertItem><p>$SYS_CLI_GTK_IM_MODULE: ibus<li class=assertItem><p>$SYS_CLI_USERNAME: wafa<li class=assertItem><p>$SYS_CLI_WINDOWPATH: 2<li class=assertItem><p>$SYS_CLI_LANG: en_US.UTF-8<li class=assertItem><p>$SYS_CLI_LC_MONETARY: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_TERM_PROGRAM_VERSION: 1.44.2<li class=assertItem><p>$SYS_CLI_XAUTHORITY: /run/user/1000/gdm/Xauthority<li class=assertItem><p>$SYS_CLI_XDG_CURRENT_DESKTOP: Unity<li class=assertItem><p>$SYS_TEW_DEFAULTS_PATH: /usr/share/gconf/ubuntu.default.path<li class=assertItem><p>$SYS_TEW_WINDOWPATH: 2<li class=assertItem><p>$SYS_TEW_LC_MEASUREMENT: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_DISPLAY: :0<li class=assertItem><p>$SYS_TEW_CHROME_DESKTOP: code-url-handler.desktop<li class=assertItem><p>$SYS_TEW_TERM_PROGRAM_VERSION: 1.44.2<li class=assertItem><p>$SYS_TEW_GNOME_TERMINAL_SERVICE: :1.512<li class=assertItem><p>$SYS_TEW_XDG_RUNTIME_DIR: /run/user/1000<li class=assertItem><p>$SYS_TEW_LC_PAPER: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_PWD: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_TEW_QT_IM_MODULE: ibus<li class=assertItem><p>$SYS_TEW_APIMATION_HOME: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_TEW_SHLVL: 3<li class=assertItem><p>$SYS_TEW_GDMSESSION: ubuntu<li class=assertItem><p>$SYS_TEW_LC_NAME: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_XDG_SESSION_ID: 3<li class=assertItem><p>$SYS_TEW_HOME: /home/wafa<li class=assertItem><p>$SYS_TEW_GJS_DEBUG_TOPICS: JS ERROR;JS LOG<li class=assertItem><p>$SYS_TEW_LC_TIME: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW__: /home/wafa/Downloads/apimation_0.54.7_linux_amd64/apimation<li class=assertItem><p>$SYS_TEW_LS_COLORS: rs<li class=assertItem><p>$SYS_TEW_QT4_IM_MODULE: xim<li class=assertItem><p>$SYS_TEW_XDG_SESSION_DESKTOP: ubuntu<li class=assertItem><p>$SYS_TEW_XDG_DATA_DIRS: /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop<li class=assertItem><p>$SYS_TEW_LC_NUMERIC: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_XDG_SEAT: seat0<li class=assertItem><p>$SYS_TEW_MANDATORY_PATH: /usr/share/gconf/ubuntu.mandatory.path<li class=assertItem><p>$SYS_TEW_DESKTOP_SESSION: ubuntu<li class=assertItem><p>$SYS_TEW_QT_ACCESSIBILITY: 1<li class=assertItem><p>$SYS_TEW_LC_MONETARY: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_IM_CONFIG_PHASE: 2<li class=assertItem><p>$SYS_TEW_XDG_CONFIG_DIRS: /etc/xdg/xdg-ubuntu:/etc/xdg<li class=assertItem><p>$SYS_TEW_GNOME_SHELL_SESSION_MODE: ubuntu<li class=assertItem><p>$SYS_TEW_APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: true<li class=assertItem><p>$SYS_TEW_TERM: xterm-256color<li class=assertItem><p>$SYS_TEW_VTE_VERSION: 5401<li class=assertItem><p>$SYS_TEW_XDG_CURRENT_DESKTOP: Unity<li class=assertItem><p>$SYS_TEW_XDG_MENU_PREFIX: gnome-<li class=assertItem><p>$SYS_TEW_COLORTERM: truecolor<li class=assertItem><p>$SYS_TEW_USERNAME: wafa<li class=assertItem><p>$SYS_TEW_SSH_AGENT_PID: 3192<li class=assertItem><p>$SYS_TEW_LC_ADDRESS: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_LC_TELEPHONE: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_LOGNAME: wafa<li class=assertItem><p>$SYS_TEW_XAUTHORITY: /run/user/1000/gdm/Xauthority<li class=assertItem><p>$SYS_TEW_CLUTTER_IM_MODULE: xim<li class=assertItem><p>$SYS_TEW_XDG_VTNR: 2<li class=assertItem><p>$SYS_TEW_GNOME_TERMINAL_SCREEN: /org/gnome/Terminal/screen/a8916d88_de23_4892_9d9a_f811c620af59<li class=assertItem><p>$SYS_TEW_LC_IDENTIFICATION: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_LESSOPEN: | /usr/bin/lesspipe %s<li class=assertItem><p>$SYS_TEW_GNOME_DESKTOP_SESSION_ID: this-is-deprecated<li class=assertItem><p>$SYS_TEW_LESSCLOSE: /usr/bin/lesspipe %s %s<li class=assertItem><p>$SYS_TEW_USER: wafa<li class=assertItem><p>$SYS_TEW_GPG_AGENT_INFO: /run/user/1000/gnupg/S.gpg-agent:0:1<li class=assertItem><p>$SYS_TEW_DBUS_SESSION_BUS_ADDRESS: unix:path<li class=assertItem><p>$SYS_TEW_NO_AT_BRIDGE: 1<li class=assertItem><p>$SYS_TEW_SSH_AUTH_SOCK: /run/user/1000/keyring/ssh<li class=assertItem><p>$SYS_TEW_XMODIFIERS: @im<li class=assertItem><p>$SYS_TEW_GTK_IM_MODULE: ibus<li class=assertItem><p>$SYS_TEW_LANG: en_US.UTF-8<li class=assertItem><p>$SYS_TEW_TERM_PROGRAM: vscode<li class=assertItem><p>$SYS_TEW_GTK_MODULES: gail:atk-bridge<li class=assertItem><p>$SYS_TEW_SHELL: /bin/bash<li class=assertItem><p>$SYS_TEW_PATH: /home/wafa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin<li class=assertItem><p>$SYS_TEW_SESSION_MANAGER: local/wafa:@/tmp/.ICE-unix/3062,unix/wafa:/tmp/.ICE-unix/3062<li class=assertItem><p>$SYS_TEW_OLDPWD: /home/wafa/Desktop/smoke test<li class=assertItem><p>$SYS_TEW_XDG_SESSION_TYPE: x11<li class=assertItem><p>$SYS_TEW_GJS_DEBUG_OUTPUT: stderr</ul><ul class=caseVarsCollectionView><li class=assertItem><p>$id: 330<li class=assertItem><p>$name: dgbkzgvg<li class=assertItem><p>$status: r4i7wivn</ul><ul class=listVarsCollectionView></ul></div></div><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Step 1 : addPet json</div><div class="stepStatus PASS"><p>PASS</div><div class=reportStepRtt>940.287µs</div></div><div class=stepDetailed style=display:none;position:relative><div class=stepDetailedLeftSide><div class="assertsTile stepDetailsTile active"><p>Asserts</div><div class="grepsTile stepDetailsTile"><p>Greps</div><div class="requestDataTile stepDetailsTile"><p>Request data</div><div class="responseDataTile stepDetailsTile"><p>Response data</div></div><div class=stepDetailedRightSide><ul class=assertCollectionView></ul><ul class=grepCollectionView></ul><div class=requestDataSection><pre><code>POST /v2/pet HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Go-http-client/1.1
+Content-Length: 157
+Accept-Encoding: gzip
+
+{
+     &#34;category&#34;: &#34;$category&#34;,
+     &#34;id&#34;: &#34;330&#34;,
+     &#34;name&#34;: &#34;dgbkzgvg&#34;,
+     &#34;photoUrls&#34;: &#34;$photoUrls&#34;,
+     &#34;status&#34;: &#34;r4i7wivn&#34;,
+     &#34;tags&#34;: &#34;$tags&#34;
+ }</code></pre><ul></ul></div><div class=responseDataSection><pre class=rawData><code>HTTP/1.1 404 Not Found
+Content-Length: 279
+Content-Type: text/html; charset=iso-8859-1
+Date: Thu, 23 Apr 2020 07:53:49 GMT
+Server: Apache/2.4.34 (Ubuntu)
+
+&lt;!DOCTYPE HTML PUBLIC &#34;-//IETF//DTD HTML 2.0//EN&#34;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL /v2/pet was not found on this server.&lt;/p&gt;
+&lt;hr&gt;
+&lt;address&gt;Apache/2.4.34 (Ubuntu) Server at 127.0.0.1 Port 80&lt;/address&gt;
+&lt;/body&gt;&lt;/html&gt;
+</code></pre><pre class=prettyJson><code></code></pre><button type=button class=prettyJSONButton>Format JSON</button></div></div></div><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Step 2 : updatePet json</div><div class="stepStatus PASS"><p>PASS</div><div class=reportStepRtt>292.162µs</div></div><div class=stepDetailed style=display:none;position:relative><div class=stepDetailedLeftSide><div class="assertsTile stepDetailsTile active"><p>Asserts</div><div class="grepsTile stepDetailsTile"><p>Greps</div><div class="requestDataTile stepDetailsTile"><p>Request data</div><div class="responseDataTile stepDetailsTile"><p>Response data</div></div><div class=stepDetailedRightSide><ul class=assertCollectionView></ul><ul class=grepCollectionView></ul><div class=requestDataSection><pre><code>PUT /v2/pet HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Go-http-client/1.1
+Content-Length: 157
+Accept-Encoding: gzip
+
+{
+     &#34;category&#34;: &#34;$category&#34;,
+     &#34;id&#34;: &#34;330&#34;,
+     &#34;name&#34;: &#34;dgbkzgvg&#34;,
+     &#34;photoUrls&#34;: &#34;$photoUrls&#34;,
+     &#34;status&#34;: &#34;r4i7wivn&#34;,
+     &#34;tags&#34;: &#34;$tags&#34;
+ }</code></pre><ul></ul></div><div class=responseDataSection><pre class=rawData><code>HTTP/1.1 405 Method Not Allowed
+Content-Length: 302
+Allow: POST,OPTIONS,HEAD,GET
+Content-Type: text/html; charset=iso-8859-1
+Date: Thu, 23 Apr 2020 07:53:49 GMT
+Server: Apache/2.4.34 (Ubuntu)
+
+&lt;!DOCTYPE HTML PUBLIC &#34;-//IETF//DTD HTML 2.0//EN&#34;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;405 Method Not Allowed&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Method Not Allowed&lt;/h1&gt;
+&lt;p&gt;The requested method PUT is not allowed for the URL /v2/pet.&lt;/p&gt;
+&lt;hr&gt;
+&lt;address&gt;Apache/2.4.34 (Ubuntu) Server at 127.0.0.1 Port 80&lt;/address&gt;
+&lt;/body&gt;&lt;/html&gt;
+</code></pre><pre class=prettyJson><code></code></pre><button type=button class=prettyJSONButton>Format JSON</button></div></div></div></ul></ul><li class=case data-time=0.00321322 data-order=1 data-result=FAIL><ul class=reportCaseListView><li class=reportCaseView><div class=reportCaseHeader><div class=caseName><h3>store CRUD json</h3><span>Case name</span></div><div class=caseTime><h3>3.21322ms</h3><span>Time to execute</span></div><div class="caseStatus FAIL"><p>FAIL</div></div><ul class=reportStepList style=display:none><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Variables</div></div><div class=stepDetailed style=display:none><div class=stepDetailedLeftSide><div class="globalVarsTile stepDetailsTile active"><p>Global vars</div><div class="caseVarsTile stepDetailsTile"><p>Case vars</div><div class="listVarsTile stepDetailsTile"><p>List vars</div></div><div class=stepDetailedRightSide style=max-height:18em><ul class=globalVarsCollectionView><li class=assertItem><p>$baseURL: http://127.0.0.1<li class=assertItem><p>$SYS_CLI_GJS_DEBUG_OUTPUT: stderr<li class=assertItem><p>$SYS_CLI_LC_PAPER: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_LESSCLOSE: /usr/bin/lesspipe %s %s<li class=assertItem><p>$SYS_CLI_NO_AT_BRIDGE: 1<li class=assertItem><p>$SYS_CLI_QT_ACCESSIBILITY: 1<li class=assertItem><p>$SYS_CLI_SHELL: /bin/bash<li class=assertItem><p>$SYS_CLI_SSH_AUTH_SOCK: /run/user/1000/keyring/ssh<li class=assertItem><p>$SYS_CLI_APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: true<li class=assertItem><p>$SYS_CLI_USER: wafa<li class=assertItem><p>$SYS_CLI_PWD: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_CLI_SSH_AGENT_PID: 3192<li class=assertItem><p>$SYS_CLI__: /home/wafa/Downloads/apimation_0.54.7_linux_amd64/apimation<li class=assertItem><p>$SYS_CLI_COLORTERM: truecolor<li class=assertItem><p>$SYS_CLI_XDG_SESSION_DESKTOP: ubuntu<li class=assertItem><p>$SYS_CLI_XDG_MENU_PREFIX: gnome-<li class=assertItem><p>$SYS_CLI_LC_NAME: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_QT4_IM_MODULE: xim<li class=assertItem><p>$SYS_CLI_DEFAULTS_PATH: /usr/share/gconf/ubuntu.default.path<li class=assertItem><p>$SYS_CLI_LC_IDENTIFICATION: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_DISPLAY: :0<li class=assertItem><p>$SYS_CLI_PATH: /home/wafa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin<li class=assertItem><p>$SYS_CLI_XDG_SESSION_ID: 3<li class=assertItem><p>$SYS_CLI_GNOME_TERMINAL_SERVICE: :1.512<li class=assertItem><p>$SYS_CLI_LC_MEASUREMENT: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_LC_NUMERIC: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_XDG_DATA_DIRS: /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop<li class=assertItem><p>$SYS_CLI_GJS_DEBUG_TOPICS: JS ERROR;JS LOG<li class=assertItem><p>$SYS_CLI_HOME: /home/wafa<li class=assertItem><p>$SYS_CLI_SESSION_MANAGER: local/wafa:@/tmp/.ICE-unix/3062,unix/wafa:/tmp/.ICE-unix/3062<li class=assertItem><p>$SYS_CLI_GTK_MODULES: gail:atk-bridge<li class=assertItem><p>$SYS_CLI_TERM_PROGRAM: vscode<li class=assertItem><p>$SYS_CLI_XDG_SESSION_TYPE: x11<li class=assertItem><p>$SYS_CLI_LC_ADDRESS: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_GPG_AGENT_INFO: /run/user/1000/gnupg/S.gpg-agent:0:1<li class=assertItem><p>$SYS_CLI_GTK_IM_MODULE: ibus<li class=assertItem><p>$SYS_CLI_USERNAME: wafa<li class=assertItem><p>$SYS_CLI_WINDOWPATH: 2<li class=assertItem><p>$SYS_CLI_GNOME_TERMINAL_SCREEN: /org/gnome/Terminal/screen/a8916d88_de23_4892_9d9a_f811c620af59<li class=assertItem><p>$SYS_CLI_LC_MONETARY: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_TERM_PROGRAM_VERSION: 1.44.2<li class=assertItem><p>$SYS_CLI_XAUTHORITY: /run/user/1000/gdm/Xauthority<li class=assertItem><p>$SYS_CLI_XDG_CURRENT_DESKTOP: Unity<li class=assertItem><p>$SYS_CLI_LANG: en_US.UTF-8<li class=assertItem><p>$SYS_CLI_GNOME_SHELL_SESSION_MODE: ubuntu<li class=assertItem><p>$SYS_CLI_TERM: xterm-256color<li class=assertItem><p>$SYS_CLI_XDG_VTNR: 2<li class=assertItem><p>$SYS_CLI_GDMSESSION: ubuntu<li class=assertItem><p>$SYS_CLI_IM_CONFIG_PHASE: 2<li class=assertItem><p>$SYS_CLI_DESKTOP_SESSION: ubuntu<li class=assertItem><p>$SYS_CLI_MANDATORY_PATH: /usr/share/gconf/ubuntu.mandatory.path<li class=assertItem><p>$SYS_CLI_OLDPWD: /home/wafa/Desktop/smoke test<li class=assertItem><p>$SYS_CLI_XDG_CONFIG_DIRS: /etc/xdg/xdg-ubuntu:/etc/xdg<li class=assertItem><p>$SYS_CLI_XDG_RUNTIME_DIR: /run/user/1000<li class=assertItem><p>$SYS_CLI_XDG_SEAT: seat0<li class=assertItem><p>$SYS_CLI_LC_TIME: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_LC_TELEPHONE: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_LESSOPEN: | /usr/bin/lesspipe %s<li class=assertItem><p>$SYS_CLI_LOGNAME: wafa<li class=assertItem><p>$SYS_CLI_QT_IM_MODULE: ibus<li class=assertItem><p>$SYS_CLI_GNOME_DESKTOP_SESSION_ID: this-is-deprecated<li class=assertItem><p>$SYS_CLI_CHROME_DESKTOP: code-url-handler.desktop<li class=assertItem><p>$SYS_CLI_CLUTTER_IM_MODULE: xim<li class=assertItem><p>$SYS_CLI_DBUS_SESSION_BUS_ADDRESS: unix:path=/run/user/1000/bus<li class=assertItem><p>$SYS_CLI_LS_COLORS: rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:<li class=assertItem><p>$SYS_CLI_SHLVL: 3<li class=assertItem><p>$SYS_CLI_VTE_VERSION: 5401<li class=assertItem><p>$SYS_CLI_XMODIFIERS: @im=ibus<li class=assertItem><p>$SYS_CLI_APIMATION_HOME: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_TEW_LC_TIME: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_XDG_SESSION_TYPE: x11<li class=assertItem><p>$SYS_TEW_GJS_DEBUG_OUTPUT: stderr<li class=assertItem><p>$SYS_TEW_WINDOWPATH: 2<li class=assertItem><p>$SYS_TEW_GPG_AGENT_INFO: /run/user/1000/gnupg/S.gpg-agent:0:1<li class=assertItem><p>$SYS_TEW_XDG_CURRENT_DESKTOP: Unity<li class=assertItem><p>$SYS_TEW_XDG_SEAT: seat0<li class=assertItem><p>$SYS_TEW_LC_IDENTIFICATION: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_QT_ACCESSIBILITY: 1<li class=assertItem><p>$SYS_TEW_LS_COLORS: rs<li class=assertItem><p>$SYS_TEW_XDG_MENU_PREFIX: gnome-<li class=assertItem><p>$SYS_TEW_DISPLAY: :0<li class=assertItem><p>$SYS_TEW_QT4_IM_MODULE: xim<li class=assertItem><p>$SYS_TEW_PATH: /home/wafa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin<li class=assertItem><p>$SYS_TEW_GTK_IM_MODULE: ibus<li class=assertItem><p>$SYS_TEW_COLORTERM: truecolor<li class=assertItem><p>$SYS_TEW_GNOME_TERMINAL_SCREEN: /org/gnome/Terminal/screen/a8916d88_de23_4892_9d9a_f811c620af59<li class=assertItem><p>$SYS_TEW_PWD: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_TEW_VTE_VERSION: 5401<li class=assertItem><p>$SYS_TEW_USERNAME: wafa<li class=assertItem><p>$SYS_TEW_LC_TELEPHONE: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_SESSION_MANAGER: local/wafa:@/tmp/.ICE-unix/3062,unix/wafa:/tmp/.ICE-unix/3062<li class=assertItem><p>$SYS_TEW__: /home/wafa/Downloads/apimation_0.54.7_linux_amd64/apimation<li class=assertItem><p>$SYS_TEW_LC_MEASUREMENT: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_LANG: en_US.UTF-8<li class=assertItem><p>$SYS_TEW_TERM_PROGRAM: vscode<li class=assertItem><p>$SYS_TEW_SHELL: /bin/bash<li class=assertItem><p>$SYS_TEW_XDG_RUNTIME_DIR: /run/user/1000<li class=assertItem><p>$SYS_TEW_GJS_DEBUG_TOPICS: JS ERROR;JS LOG<li class=assertItem><p>$SYS_TEW_LESSOPEN: | /usr/bin/lesspipe %s<li class=assertItem><p>$SYS_TEW_LC_PAPER: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_TERM_PROGRAM_VERSION: 1.44.2<li class=assertItem><p>$SYS_TEW_XDG_SESSION_DESKTOP: ubuntu<li class=assertItem><p>$SYS_TEW_GNOME_DESKTOP_SESSION_ID: this-is-deprecated<li class=assertItem><p>$SYS_TEW_SSH_AGENT_PID: 3192<li class=assertItem><p>$SYS_TEW_TERM: xterm-256color<li class=assertItem><p>$SYS_TEW_XAUTHORITY: /run/user/1000/gdm/Xauthority<li class=assertItem><p>$SYS_TEW_APIMATION_HOME: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_TEW_XDG_VTNR: 2<li class=assertItem><p>$SYS_TEW_XDG_SESSION_ID: 3<li class=assertItem><p>$SYS_TEW_USER: wafa<li class=assertItem><p>$SYS_TEW_DEFAULTS_PATH: /usr/share/gconf/ubuntu.default.path<li class=assertItem><p>$SYS_TEW_LC_MONETARY: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_HOME: /home/wafa<li class=assertItem><p>$SYS_TEW_SHLVL: 3<li class=assertItem><p>$SYS_TEW_XDG_CONFIG_DIRS: /etc/xdg/xdg-ubuntu:/etc/xdg<li class=assertItem><p>$SYS_TEW_NO_AT_BRIDGE: 1<li class=assertItem><p>$SYS_TEW_XMODIFIERS: @im<li class=assertItem><p>$SYS_TEW_LOGNAME: wafa<li class=assertItem><p>$SYS_TEW_DBUS_SESSION_BUS_ADDRESS: unix:path<li class=assertItem><p>$SYS_TEW_MANDATORY_PATH: /usr/share/gconf/ubuntu.mandatory.path<li class=assertItem><p>$SYS_TEW_APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: true<li class=assertItem><p>$SYS_TEW_XDG_DATA_DIRS: /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop<li class=assertItem><p>$SYS_TEW_LC_NUMERIC: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_QT_IM_MODULE: ibus<li class=assertItem><p>$SYS_TEW_IM_CONFIG_PHASE: 2<li class=assertItem><p>$SYS_TEW_CLUTTER_IM_MODULE: xim<li class=assertItem><p>$SYS_TEW_LESSCLOSE: /usr/bin/lesspipe %s %s<li class=assertItem><p>$SYS_TEW_CHROME_DESKTOP: code-url-handler.desktop<li class=assertItem><p>$SYS_TEW_SSH_AUTH_SOCK: /run/user/1000/keyring/ssh<li class=assertItem><p>$SYS_TEW_OLDPWD: /home/wafa/Desktop/smoke test<li class=assertItem><p>$SYS_TEW_LC_ADDRESS: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_GNOME_TERMINAL_SERVICE: :1.512<li class=assertItem><p>$SYS_TEW_GDMSESSION: ubuntu<li class=assertItem><p>$SYS_TEW_GNOME_SHELL_SESSION_MODE: ubuntu<li class=assertItem><p>$SYS_TEW_LC_NAME: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_DESKTOP_SESSION: ubuntu<li class=assertItem><p>$SYS_TEW_GTK_MODULES: gail:atk-bridge</ul><ul class=caseVarsCollectionView><li class=assertItem><p>$id: 143<li class=assertItem><p>$petId: 65<li class=assertItem><p>$quantity: 486<li class=assertItem><p>$shipDate: apmmbc9e<li class=assertItem><p>$status: w6biis</ul><ul class=listVarsCollectionView><li class=assertItem><p>$complete:
+$completeList =
+invalid character '&lt;' looking for beginning of value<li class=assertItem><p>$id:
+$idList =
+invalid character '&lt;' looking for beginning of value<li class=assertItem><p>$petId:
+$petIdList =
+invalid character '&lt;' looking for beginning of value<li class=assertItem><p>$quantity:
+$quantityList =
+invalid character '&lt;' looking for beginning of value<li class=assertItem><p>$shipDate:
+$shipDateList =
+invalid character '&lt;' looking for beginning of value<li class=assertItem><p>$status:
+$statusList =
+invalid character '&lt;' looking for beginning of value</ul></div></div><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Step 1 : placeOrder json</div><div class="stepStatus FAIL"><p>FAIL</div><div class=reportStepRtt>1.93972ms</div></div><div class=stepDetailed style=display:none;position:relative><div class=stepDetailedLeftSide><div class="assertsTile stepDetailsTile active"><p>Asserts</div><div class="grepsTile stepDetailsTile"><p>Greps</div><div class="requestDataTile stepDetailsTile"><p>Request data</div><div class="responseDataTile stepDetailsTile"><p>Response data</div></div><div class=stepDetailedRightSide><ul class=assertCollectionView><li class=assertItem><p>Extracted value '404 Not Found' from extract type 'status' regex does NOT match expected value '200'<div class=FAIL></div></ul><ul class=grepCollectionView><li class=assertItem><p>$complete: invalid character '&lt;' looking for beginning of value<li class=assertItem><p>$id: invalid character '&lt;' looking for beginning of value<li class=assertItem><p>$petId: invalid character '&lt;' looking for beginning of value<li class=assertItem><p>$quantity: invalid character '&lt;' looking for beginning of value<li class=assertItem><p>$shipDate: invalid character '&lt;' looking for beginning of value<li class=assertItem><p>$status: invalid character '&lt;' looking for beginning of value</ul><div class=requestDataSection><pre><code>POST /v2/store/order HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Go-http-client/1.1
+Content-Length: 149
+Accept-Encoding: gzip
+
+{
+     &#34;complete&#34;: &#34;$complete&#34;,
+     &#34;id&#34;: &#34;143&#34;,
+     &#34;petId&#34;: &#34;65&#34;,
+     &#34;quantity&#34;: &#34;486&#34;,
+     &#34;shipDate&#34;: &#34;apmmbc9e&#34;,
+     &#34;status&#34;: &#34;w6biis&#34;
+ }</code></pre><ul></ul></div><div class=responseDataSection><pre class=rawData><code>HTTP/1.1 404 Not Found
+Content-Length: 287
+Content-Type: text/html; charset=iso-8859-1
+Date: Thu, 23 Apr 2020 07:53:50 GMT
+Server: Apache/2.4.34 (Ubuntu)
+
+&lt;!DOCTYPE HTML PUBLIC &#34;-//IETF//DTD HTML 2.0//EN&#34;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL /v2/store/order was not found on this server.&lt;/p&gt;
+&lt;hr&gt;
+&lt;address&gt;Apache/2.4.34 (Ubuntu) Server at 127.0.0.1 Port 80&lt;/address&gt;
+&lt;/body&gt;&lt;/html&gt;
+</code></pre><pre class=prettyJson><code></code></pre><button type=button class=prettyJSONButton>Format JSON</button></div></div></div></ul></ul><li class=case data-time=0.002202995 data-order=2 data-result=PASS><ul class=reportCaseListView><li class=reportCaseView><div class=reportCaseHeader><div class=caseName><h3>user CRUD json</h3><span>Case name</span></div><div class=caseTime><h3>2.202995ms</h3><span>Time to execute</span></div><div class="caseStatus PASS"><p>PASS</div></div><ul class=reportStepList style=display:none><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Variables</div></div><div class=stepDetailed style=display:none><div class=stepDetailedLeftSide><div class="globalVarsTile stepDetailsTile active"><p>Global vars</div><div class="caseVarsTile stepDetailsTile"><p>Case vars</div><div class="listVarsTile stepDetailsTile"><p>List vars</div></div><div class=stepDetailedRightSide style=max-height:18em><ul class=globalVarsCollectionView><li class=assertItem><p>$baseURL: http://127.0.0.1<li class=assertItem><p>$SYS_CLI_XDG_DATA_DIRS: /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop<li class=assertItem><p>$SYS_CLI_GJS_DEBUG_TOPICS: JS ERROR;JS LOG<li class=assertItem><p>$SYS_CLI_LC_MEASUREMENT: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_LC_NUMERIC: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_GTK_MODULES: gail:atk-bridge<li class=assertItem><p>$SYS_CLI_HOME: /home/wafa<li class=assertItem><p>$SYS_CLI_SESSION_MANAGER: local/wafa:@/tmp/.ICE-unix/3062,unix/wafa:/tmp/.ICE-unix/3062<li class=assertItem><p>$SYS_CLI_LC_ADDRESS: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_TERM_PROGRAM: vscode<li class=assertItem><p>$SYS_CLI_XDG_SESSION_TYPE: x11<li class=assertItem><p>$SYS_CLI_USERNAME: wafa<li class=assertItem><p>$SYS_CLI_WINDOWPATH: 2<li class=assertItem><p>$SYS_CLI_GNOME_TERMINAL_SCREEN: /org/gnome/Terminal/screen/a8916d88_de23_4892_9d9a_f811c620af59<li class=assertItem><p>$SYS_CLI_GPG_AGENT_INFO: /run/user/1000/gnupg/S.gpg-agent:0:1<li class=assertItem><p>$SYS_CLI_GTK_IM_MODULE: ibus<li class=assertItem><p>$SYS_CLI_XAUTHORITY: /run/user/1000/gdm/Xauthority<li class=assertItem><p>$SYS_CLI_XDG_CURRENT_DESKTOP: Unity<li class=assertItem><p>$SYS_CLI_LANG: en_US.UTF-8<li class=assertItem><p>$SYS_CLI_LC_MONETARY: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_TERM_PROGRAM_VERSION: 1.44.2<li class=assertItem><p>$SYS_CLI_XDG_VTNR: 2<li class=assertItem><p>$SYS_CLI_GDMSESSION: ubuntu<li class=assertItem><p>$SYS_CLI_GNOME_SHELL_SESSION_MODE: ubuntu<li class=assertItem><p>$SYS_CLI_TERM: xterm-256color<li class=assertItem><p>$SYS_CLI_DESKTOP_SESSION: ubuntu<li class=assertItem><p>$SYS_CLI_IM_CONFIG_PHASE: 2<li class=assertItem><p>$SYS_CLI_XDG_CONFIG_DIRS: /etc/xdg/xdg-ubuntu:/etc/xdg<li class=assertItem><p>$SYS_CLI_XDG_RUNTIME_DIR: /run/user/1000<li class=assertItem><p>$SYS_CLI_XDG_SEAT: seat0<li class=assertItem><p>$SYS_CLI_LC_TIME: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_MANDATORY_PATH: /usr/share/gconf/ubuntu.mandatory.path<li class=assertItem><p>$SYS_CLI_OLDPWD: /home/wafa/Desktop/smoke test<li class=assertItem><p>$SYS_CLI_LOGNAME: wafa<li class=assertItem><p>$SYS_CLI_QT_IM_MODULE: ibus<li class=assertItem><p>$SYS_CLI_GNOME_DESKTOP_SESSION_ID: this-is-deprecated<li class=assertItem><p>$SYS_CLI_LC_TELEPHONE: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_LESSOPEN: | /usr/bin/lesspipe %s<li class=assertItem><p>$SYS_CLI_DBUS_SESSION_BUS_ADDRESS: unix:path=/run/user/1000/bus<li class=assertItem><p>$SYS_CLI_LS_COLORS: rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:<li class=assertItem><p>$SYS_CLI_SHLVL: 3<li class=assertItem><p>$SYS_CLI_VTE_VERSION: 5401<li class=assertItem><p>$SYS_CLI_XMODIFIERS: @im=ibus<li class=assertItem><p>$SYS_CLI_APIMATION_HOME: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_CLI_CHROME_DESKTOP: code-url-handler.desktop<li class=assertItem><p>$SYS_CLI_CLUTTER_IM_MODULE: xim<li class=assertItem><p>$SYS_CLI_LESSCLOSE: /usr/bin/lesspipe %s %s<li class=assertItem><p>$SYS_CLI_NO_AT_BRIDGE: 1<li class=assertItem><p>$SYS_CLI_QT_ACCESSIBILITY: 1<li class=assertItem><p>$SYS_CLI_SHELL: /bin/bash<li class=assertItem><p>$SYS_CLI_SSH_AUTH_SOCK: /run/user/1000/keyring/ssh<li class=assertItem><p>$SYS_CLI_APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: true<li class=assertItem><p>$SYS_CLI_GJS_DEBUG_OUTPUT: stderr<li class=assertItem><p>$SYS_CLI_LC_PAPER: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_USER: wafa<li class=assertItem><p>$SYS_CLI__: /home/wafa/Downloads/apimation_0.54.7_linux_amd64/apimation<li class=assertItem><p>$SYS_CLI_COLORTERM: truecolor<li class=assertItem><p>$SYS_CLI_PWD: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_CLI_SSH_AGENT_PID: 3192<li class=assertItem><p>$SYS_CLI_XDG_MENU_PREFIX: gnome-<li class=assertItem><p>$SYS_CLI_XDG_SESSION_DESKTOP: ubuntu<li class=assertItem><p>$SYS_CLI_DEFAULTS_PATH: /usr/share/gconf/ubuntu.default.path<li class=assertItem><p>$SYS_CLI_LC_NAME: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_QT4_IM_MODULE: xim<li class=assertItem><p>$SYS_CLI_DISPLAY: :0<li class=assertItem><p>$SYS_CLI_LC_IDENTIFICATION: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_GNOME_TERMINAL_SERVICE: :1.512<li class=assertItem><p>$SYS_CLI_PATH: /home/wafa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin<li class=assertItem><p>$SYS_CLI_XDG_SESSION_ID: 3<li class=assertItem><p>$SYS_TEW_MANDATORY_PATH: /usr/share/gconf/ubuntu.mandatory.path<li class=assertItem><p>$SYS_TEW_XDG_CURRENT_DESKTOP: Unity<li class=assertItem><p>$SYS_TEW_TERM_PROGRAM_VERSION: 1.44.2<li class=assertItem><p>$SYS_TEW_LC_NUMERIC: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_TERM: xterm-256color<li class=assertItem><p>$SYS_TEW_COLORTERM: truecolor<li class=assertItem><p>$SYS_TEW_HOME: /home/wafa<li class=assertItem><p>$SYS_TEW_LC_ADDRESS: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_XMODIFIERS: @im<li class=assertItem><p>$SYS_TEW_XDG_SEAT: seat0<li class=assertItem><p>$SYS_TEW_VTE_VERSION: 5401<li class=assertItem><p>$SYS_TEW_XDG_CONFIG_DIRS: /etc/xdg/xdg-ubuntu:/etc/xdg<li class=assertItem><p>$SYS_TEW_LC_IDENTIFICATION: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_LESSOPEN: | /usr/bin/lesspipe %s<li class=assertItem><p>$SYS_TEW__: /home/wafa/Downloads/apimation_0.54.7_linux_amd64/apimation<li class=assertItem><p>$SYS_TEW_PWD: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_TEW_QT_IM_MODULE: ibus<li class=assertItem><p>$SYS_TEW_GNOME_DESKTOP_SESSION_ID: this-is-deprecated<li class=assertItem><p>$SYS_TEW_DBUS_SESSION_BUS_ADDRESS: unix:path<li class=assertItem><p>$SYS_TEW_SESSION_MANAGER: local/wafa:@/tmp/.ICE-unix/3062,unix/wafa:/tmp/.ICE-unix/3062<li class=assertItem><p>$SYS_TEW_GNOME_TERMINAL_SCREEN: /org/gnome/Terminal/screen/a8916d88_de23_4892_9d9a_f811c620af59<li class=assertItem><p>$SYS_TEW_LS_COLORS: rs<li class=assertItem><p>$SYS_TEW_LC_MONETARY: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_WINDOWPATH: 2<li class=assertItem><p>$SYS_TEW_XDG_RUNTIME_DIR: /run/user/1000<li class=assertItem><p>$SYS_TEW_GTK_IM_MODULE: ibus<li class=assertItem><p>$SYS_TEW_CHROME_DESKTOP: code-url-handler.desktop<li class=assertItem><p>$SYS_TEW_XDG_SESSION_ID: 3<li class=assertItem><p>$SYS_TEW_DEFAULTS_PATH: /usr/share/gconf/ubuntu.default.path<li class=assertItem><p>$SYS_TEW_SSH_AGENT_PID: 3192<li class=assertItem><p>$SYS_TEW_TERM_PROGRAM: vscode<li class=assertItem><p>$SYS_TEW_XAUTHORITY: /run/user/1000/gdm/Xauthority<li class=assertItem><p>$SYS_TEW_LC_TIME: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_LC_MEASUREMENT: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_LESSCLOSE: /usr/bin/lesspipe %s %s<li class=assertItem><p>$SYS_TEW_XDG_MENU_PREFIX: gnome-<li class=assertItem><p>$SYS_TEW_NO_AT_BRIDGE: 1<li class=assertItem><p>$SYS_TEW_GTK_MODULES: gail:atk-bridge<li class=assertItem><p>$SYS_TEW_SHLVL: 3<li class=assertItem><p>$SYS_TEW_DISPLAY: :0<li class=assertItem><p>$SYS_TEW_GNOME_SHELL_SESSION_MODE: ubuntu<li class=assertItem><p>$SYS_TEW_GJS_DEBUG_OUTPUT: stderr<li class=assertItem><p>$SYS_TEW_SHELL: /bin/bash<li class=assertItem><p>$SYS_TEW_USER: wafa<li class=assertItem><p>$SYS_TEW_QT4_IM_MODULE: xim<li class=assertItem><p>$SYS_TEW_QT_ACCESSIBILITY: 1<li class=assertItem><p>$SYS_TEW_GNOME_TERMINAL_SERVICE: :1.512<li class=assertItem><p>$SYS_TEW_USERNAME: wafa<li class=assertItem><p>$SYS_TEW_SSH_AUTH_SOCK: /run/user/1000/keyring/ssh<li class=assertItem><p>$SYS_TEW_XDG_DATA_DIRS: /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop<li class=assertItem><p>$SYS_TEW_LOGNAME: wafa<li class=assertItem><p>$SYS_TEW_PATH: /home/wafa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin<li class=assertItem><p>$SYS_TEW_CLUTTER_IM_MODULE: xim<li class=assertItem><p>$SYS_TEW_IM_CONFIG_PHASE: 2<li class=assertItem><p>$SYS_TEW_GDMSESSION: ubuntu<li class=assertItem><p>$SYS_TEW_XDG_VTNR: 2<li class=assertItem><p>$SYS_TEW_LC_NAME: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_LC_TELEPHONE: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_LC_PAPER: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_DESKTOP_SESSION: ubuntu<li class=assertItem><p>$SYS_TEW_GPG_AGENT_INFO: /run/user/1000/gnupg/S.gpg-agent:0:1<li class=assertItem><p>$SYS_TEW_GJS_DEBUG_TOPICS: JS ERROR;JS LOG<li class=assertItem><p>$SYS_TEW_LANG: en_US.UTF-8<li class=assertItem><p>$SYS_TEW_OLDPWD: /home/wafa/Desktop/smoke test<li class=assertItem><p>$SYS_TEW_APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: true<li class=assertItem><p>$SYS_TEW_XDG_SESSION_TYPE: x11<li class=assertItem><p>$SYS_TEW_XDG_SESSION_DESKTOP: ubuntu<li class=assertItem><p>$SYS_TEW_APIMATION_HOME: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest</ul><ul class=caseVarsCollectionView><li class=assertItem><p>$firstName: q8qhdp<li class=assertItem><p>$id: 126<li class=assertItem><p>$lastName: 40l2792g<li class=assertItem><p>$password: p7bznt<li class=assertItem><p>$phone: kuez1<li class=assertItem><p>$userStatus: 356<li class=assertItem><p>$username: hqep8eb3<li class=assertItem><p>$email: 8f9h9i0</ul><ul class=listVarsCollectionView></ul></div></div><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Step 1 : createUser json</div><div class="stepStatus PASS"><p>PASS</div><div class=reportStepRtt>464.959µs</div></div><div class=stepDetailed style=display:none;position:relative><div class=stepDetailedLeftSide><div class="assertsTile stepDetailsTile active"><p>Asserts</div><div class="grepsTile stepDetailsTile"><p>Greps</div><div class="requestDataTile stepDetailsTile"><p>Request data</div><div class="responseDataTile stepDetailsTile"><p>Response data</div></div><div class=stepDetailedRightSide><ul class=assertCollectionView></ul><ul class=grepCollectionView></ul><div class=requestDataSection><pre><code>POST /v2/user HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Go-http-client/1.1
+Content-Length: 208
+Accept-Encoding: gzip
+
+{
+     &#34;email&#34;: &#34;8f9h9i0&#34;,
+     &#34;firstName&#34;: &#34;q8qhdp&#34;,
+     &#34;id&#34;: &#34;126&#34;,
+     &#34;lastName&#34;: &#34;40l2792g&#34;,
+     &#34;password&#34;: &#34;p7bznt&#34;,
+     &#34;phone&#34;: &#34;kuez1&#34;,
+     &#34;userStatus&#34;: &#34;356&#34;,
+     &#34;username&#34;: &#34;hqep8eb3&#34;
+ }</code></pre><ul></ul></div><div class=responseDataSection><pre class=rawData><code>HTTP/1.1 404 Not Found
+Content-Length: 280
+Content-Type: text/html; charset=iso-8859-1
+Date: Thu, 23 Apr 2020 07:53:51 GMT
+Server: Apache/2.4.34 (Ubuntu)
+
+&lt;!DOCTYPE HTML PUBLIC &#34;-//IETF//DTD HTML 2.0//EN&#34;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL /v2/user was not found on this server.&lt;/p&gt;
+&lt;hr&gt;
+&lt;address&gt;Apache/2.4.34 (Ubuntu) Server at 127.0.0.1 Port 80&lt;/address&gt;
+&lt;/body&gt;&lt;/html&gt;
+</code></pre><pre class=prettyJson><code></code></pre><button type=button class=prettyJSONButton>Format JSON</button></div></div></div><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Step 2 : updateUser json</div><div class="stepStatus PASS"><p>PASS</div><div class=reportStepRtt>198.184µs</div></div><div class=stepDetailed style=display:none;position:relative><div class=stepDetailedLeftSide><div class="assertsTile stepDetailsTile active"><p>Asserts</div><div class="grepsTile stepDetailsTile"><p>Greps</div><div class="requestDataTile stepDetailsTile"><p>Request data</div><div class="responseDataTile stepDetailsTile"><p>Response data</div></div><div class=stepDetailedRightSide><ul class=assertCollectionView></ul><ul class=grepCollectionView></ul><div class=requestDataSection><pre><code>PUT /v2/user/hqep8eb3 HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Go-http-client/1.1
+Content-Length: 208
+Accept-Encoding: gzip
+
+{
+     &#34;email&#34;: &#34;8f9h9i0&#34;,
+     &#34;firstName&#34;: &#34;q8qhdp&#34;,
+     &#34;id&#34;: &#34;126&#34;,
+     &#34;lastName&#34;: &#34;40l2792g&#34;,
+     &#34;password&#34;: &#34;p7bznt&#34;,
+     &#34;phone&#34;: &#34;kuez1&#34;,
+     &#34;userStatus&#34;: &#34;356&#34;,
+     &#34;username&#34;: &#34;hqep8eb3&#34;
+ }</code></pre><ul></ul></div><div class=responseDataSection><pre class=rawData><code>HTTP/1.1 405 Method Not Allowed
+Content-Length: 312
+Allow: POST,OPTIONS,HEAD,GET
+Content-Type: text/html; charset=iso-8859-1
+Date: Thu, 23 Apr 2020 07:53:51 GMT
+Server: Apache/2.4.34 (Ubuntu)
+
+&lt;!DOCTYPE HTML PUBLIC &#34;-//IETF//DTD HTML 2.0//EN&#34;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;405 Method Not Allowed&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Method Not Allowed&lt;/h1&gt;
+&lt;p&gt;The requested method PUT is not allowed for the URL /v2/user/hqep8eb3.&lt;/p&gt;
+&lt;hr&gt;
+&lt;address&gt;Apache/2.4.34 (Ubuntu) Server at 127.0.0.1 Port 80&lt;/address&gt;
+&lt;/body&gt;&lt;/html&gt;
+</code></pre><pre class=prettyJson><code></code></pre><button type=button class=prettyJSONButton>Format JSON</button></div></div></div><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Step 3 : createUsersWithListInput json</div><div class="stepStatus PASS"><p>PASS</div><div class=reportStepRtt>271.297µs</div></div><div class=stepDetailed style=display:none;position:relative><div class=stepDetailedLeftSide><div class="assertsTile stepDetailsTile active"><p>Asserts</div><div class="grepsTile stepDetailsTile"><p>Greps</div><div class="requestDataTile stepDetailsTile"><p>Request data</div><div class="responseDataTile stepDetailsTile"><p>Response data</div></div><div class=stepDetailedRightSide><ul class=assertCollectionView></ul><ul class=grepCollectionView></ul><div class=requestDataSection><pre><code>POST /v2/user/createWithList HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Go-http-client/1.1
+Content-Length: 2
+Accept-Encoding: gzip
+
+{}</code></pre><ul></ul></div><div class=responseDataSection><pre class=rawData><code>HTTP/1.1 404 Not Found
+Content-Length: 295
+Content-Type: text/html; charset=iso-8859-1
+Date: Thu, 23 Apr 2020 07:53:51 GMT
+Server: Apache/2.4.34 (Ubuntu)
+
+&lt;!DOCTYPE HTML PUBLIC &#34;-//IETF//DTD HTML 2.0//EN&#34;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL /v2/user/createWithList was not found on this server.&lt;/p&gt;
+&lt;hr&gt;
+&lt;address&gt;Apache/2.4.34 (Ubuntu) Server at 127.0.0.1 Port 80&lt;/address&gt;
+&lt;/body&gt;&lt;/html&gt;
+</code></pre><pre class=prettyJson><code></code></pre><button type=button class=prettyJSONButton>Format JSON</button></div></div></div><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Step 4 : updateUser json</div><div class="stepStatus PASS"><p>PASS</div><div class=reportStepRtt>147.739µs</div></div><div class=stepDetailed style=display:none;position:relative><div class=stepDetailedLeftSide><div class="assertsTile stepDetailsTile active"><p>Asserts</div><div class="grepsTile stepDetailsTile"><p>Greps</div><div class="requestDataTile stepDetailsTile"><p>Request data</div><div class="responseDataTile stepDetailsTile"><p>Response data</div></div><div class=stepDetailedRightSide><ul class=assertCollectionView></ul><ul class=grepCollectionView></ul><div class=requestDataSection><pre><code>PUT /v2/user/hqep8eb3 HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Go-http-client/1.1
+Content-Length: 208
+Accept-Encoding: gzip
+
+{
+     &#34;email&#34;: &#34;8f9h9i0&#34;,
+     &#34;firstName&#34;: &#34;q8qhdp&#34;,
+     &#34;id&#34;: &#34;126&#34;,
+     &#34;lastName&#34;: &#34;40l2792g&#34;,
+     &#34;password&#34;: &#34;p7bznt&#34;,
+     &#34;phone&#34;: &#34;kuez1&#34;,
+     &#34;userStatus&#34;: &#34;356&#34;,
+     &#34;username&#34;: &#34;hqep8eb3&#34;
+ }</code></pre><ul></ul></div><div class=responseDataSection><pre class=rawData><code>HTTP/1.1 405 Method Not Allowed
+Content-Length: 312
+Allow: POST,OPTIONS,HEAD,GET
+Content-Type: text/html; charset=iso-8859-1
+Date: Thu, 23 Apr 2020 07:53:51 GMT
+Server: Apache/2.4.34 (Ubuntu)
+
+&lt;!DOCTYPE HTML PUBLIC &#34;-//IETF//DTD HTML 2.0//EN&#34;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;405 Method Not Allowed&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Method Not Allowed&lt;/h1&gt;
+&lt;p&gt;The requested method PUT is not allowed for the URL /v2/user/hqep8eb3.&lt;/p&gt;
+&lt;hr&gt;
+&lt;address&gt;Apache/2.4.34 (Ubuntu) Server at 127.0.0.1 Port 80&lt;/address&gt;
+&lt;/body&gt;&lt;/html&gt;
+</code></pre><pre class=prettyJson><code></code></pre><button type=button class=prettyJSONButton>Format JSON</button></div></div></div></ul></ul><li class=case data-time=0.001759147 data-order=3 data-result=PASS><ul class=reportCaseListView><li class=reportCaseView><div class=reportCaseHeader><div class=caseName><h3>pet CRUD xml</h3><span>Case name</span></div><div class=caseTime><h3>1.759147ms</h3><span>Time to execute</span></div><div class="caseStatus PASS"><p>PASS</div></div><ul class=reportStepList style=display:none><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Variables</div></div><div class=stepDetailed style=display:none><div class=stepDetailedLeftSide><div class="globalVarsTile stepDetailsTile active"><p>Global vars</div><div class="caseVarsTile stepDetailsTile"><p>Case vars</div><div class="listVarsTile stepDetailsTile"><p>List vars</div></div><div class=stepDetailedRightSide style=max-height:18em><ul class=globalVarsCollectionView><li class=assertItem><p>$baseURL: http://127.0.0.1<li class=assertItem><p>$SYS_CLI_LC_ADDRESS: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_TERM_PROGRAM: vscode<li class=assertItem><p>$SYS_CLI_XDG_SESSION_TYPE: x11<li class=assertItem><p>$SYS_CLI_GNOME_TERMINAL_SCREEN: /org/gnome/Terminal/screen/a8916d88_de23_4892_9d9a_f811c620af59<li class=assertItem><p>$SYS_CLI_GPG_AGENT_INFO: /run/user/1000/gnupg/S.gpg-agent:0:1<li class=assertItem><p>$SYS_CLI_GTK_IM_MODULE: ibus<li class=assertItem><p>$SYS_CLI_USERNAME: wafa<li class=assertItem><p>$SYS_CLI_WINDOWPATH: 2<li class=assertItem><p>$SYS_CLI_LANG: en_US.UTF-8<li class=assertItem><p>$SYS_CLI_LC_MONETARY: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_TERM_PROGRAM_VERSION: 1.44.2<li class=assertItem><p>$SYS_CLI_XAUTHORITY: /run/user/1000/gdm/Xauthority<li class=assertItem><p>$SYS_CLI_XDG_CURRENT_DESKTOP: Unity<li class=assertItem><p>$SYS_CLI_GDMSESSION: ubuntu<li class=assertItem><p>$SYS_CLI_GNOME_SHELL_SESSION_MODE: ubuntu<li class=assertItem><p>$SYS_CLI_TERM: xterm-256color<li class=assertItem><p>$SYS_CLI_XDG_VTNR: 2<li class=assertItem><p>$SYS_CLI_DESKTOP_SESSION: ubuntu<li class=assertItem><p>$SYS_CLI_IM_CONFIG_PHASE: 2<li class=assertItem><p>$SYS_CLI_LC_TIME: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_MANDATORY_PATH: /usr/share/gconf/ubuntu.mandatory.path<li class=assertItem><p>$SYS_CLI_OLDPWD: /home/wafa/Desktop/smoke test<li class=assertItem><p>$SYS_CLI_XDG_CONFIG_DIRS: /etc/xdg/xdg-ubuntu:/etc/xdg<li class=assertItem><p>$SYS_CLI_XDG_RUNTIME_DIR: /run/user/1000<li class=assertItem><p>$SYS_CLI_XDG_SEAT: seat0<li class=assertItem><p>$SYS_CLI_GNOME_DESKTOP_SESSION_ID: this-is-deprecated<li class=assertItem><p>$SYS_CLI_LC_TELEPHONE: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_LESSOPEN: | /usr/bin/lesspipe %s<li class=assertItem><p>$SYS_CLI_LOGNAME: wafa<li class=assertItem><p>$SYS_CLI_QT_IM_MODULE: ibus<li class=assertItem><p>$SYS_CLI_VTE_VERSION: 5401<li class=assertItem><p>$SYS_CLI_XMODIFIERS: @im=ibus<li class=assertItem><p>$SYS_CLI_APIMATION_HOME: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_CLI_CHROME_DESKTOP: code-url-handler.desktop<li class=assertItem><p>$SYS_CLI_CLUTTER_IM_MODULE: xim<li class=assertItem><p>$SYS_CLI_DBUS_SESSION_BUS_ADDRESS: unix:path=/run/user/1000/bus<li class=assertItem><p>$SYS_CLI_LS_COLORS: rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:<li class=assertItem><p>$SYS_CLI_SHLVL: 3<li class=assertItem><p>$SYS_CLI_SHELL: /bin/bash<li class=assertItem><p>$SYS_CLI_SSH_AUTH_SOCK: /run/user/1000/keyring/ssh<li class=assertItem><p>$SYS_CLI_APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: true<li class=assertItem><p>$SYS_CLI_GJS_DEBUG_OUTPUT: stderr<li class=assertItem><p>$SYS_CLI_LC_PAPER: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_LESSCLOSE: /usr/bin/lesspipe %s %s<li class=assertItem><p>$SYS_CLI_NO_AT_BRIDGE: 1<li class=assertItem><p>$SYS_CLI_QT_ACCESSIBILITY: 1<li class=assertItem><p>$SYS_CLI_USER: wafa<li class=assertItem><p>$SYS_CLI_COLORTERM: truecolor<li class=assertItem><p>$SYS_CLI_PWD: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_CLI_SSH_AGENT_PID: 3192<li class=assertItem><p>$SYS_CLI__: /home/wafa/Downloads/apimation_0.54.7_linux_amd64/apimation<li class=assertItem><p>$SYS_CLI_XDG_MENU_PREFIX: gnome-<li class=assertItem><p>$SYS_CLI_XDG_SESSION_DESKTOP: ubuntu<li class=assertItem><p>$SYS_CLI_DEFAULTS_PATH: /usr/share/gconf/ubuntu.default.path<li class=assertItem><p>$SYS_CLI_LC_NAME: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_QT4_IM_MODULE: xim<li class=assertItem><p>$SYS_CLI_DISPLAY: :0<li class=assertItem><p>$SYS_CLI_LC_IDENTIFICATION: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_GNOME_TERMINAL_SERVICE: :1.512<li class=assertItem><p>$SYS_CLI_PATH: /home/wafa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin<li class=assertItem><p>$SYS_CLI_XDG_SESSION_ID: 3<li class=assertItem><p>$SYS_CLI_GJS_DEBUG_TOPICS: JS ERROR;JS LOG<li class=assertItem><p>$SYS_CLI_LC_MEASUREMENT: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_LC_NUMERIC: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_XDG_DATA_DIRS: /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop<li class=assertItem><p>$SYS_CLI_GTK_MODULES: gail:atk-bridge<li class=assertItem><p>$SYS_CLI_HOME: /home/wafa<li class=assertItem><p>$SYS_CLI_SESSION_MANAGER: local/wafa:@/tmp/.ICE-unix/3062,unix/wafa:/tmp/.ICE-unix/3062<li class=assertItem><p>$SYS_TEW_PWD: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_TEW_LOGNAME: wafa<li class=assertItem><p>$SYS_TEW_OLDPWD: /home/wafa/Desktop/smoke test<li class=assertItem><p>$SYS_TEW_MANDATORY_PATH: /usr/share/gconf/ubuntu.mandatory.path<li class=assertItem><p>$SYS_TEW_XDG_SESSION_TYPE: x11<li class=assertItem><p>$SYS_TEW_LC_ADDRESS: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_XAUTHORITY: /run/user/1000/gdm/Xauthority<li class=assertItem><p>$SYS_TEW_LC_NAME: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_QT_ACCESSIBILITY: 1<li class=assertItem><p>$SYS_TEW_XDG_CONFIG_DIRS: /etc/xdg/xdg-ubuntu:/etc/xdg<li class=assertItem><p>$SYS_TEW_TERM_PROGRAM_VERSION: 1.44.2<li class=assertItem><p>$SYS_TEW_GNOME_DESKTOP_SESSION_ID: this-is-deprecated<li class=assertItem><p>$SYS_TEW_LS_COLORS: rs<li class=assertItem><p>$SYS_TEW_TERM: xterm-256color<li class=assertItem><p>$SYS_TEW_GPG_AGENT_INFO: /run/user/1000/gnupg/S.gpg-agent:0:1<li class=assertItem><p>$SYS_TEW_LANG: en_US.UTF-8<li class=assertItem><p>$SYS_TEW_GNOME_SHELL_SESSION_MODE: ubuntu<li class=assertItem><p>$SYS_TEW_SSH_AUTH_SOCK: /run/user/1000/keyring/ssh<li class=assertItem><p>$SYS_TEW_SSH_AGENT_PID: 3192<li class=assertItem><p>$SYS_TEW_TERM_PROGRAM: vscode<li class=assertItem><p>$SYS_TEW_WINDOWPATH: 2<li class=assertItem><p>$SYS_TEW_LC_IDENTIFICATION: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_LC_TIME: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_VTE_VERSION: 5401<li class=assertItem><p>$SYS_TEW_IM_CONFIG_PHASE: 2<li class=assertItem><p>$SYS_TEW_LC_PAPER: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_XDG_MENU_PREFIX: gnome-<li class=assertItem><p>$SYS_TEW_COLORTERM: truecolor<li class=assertItem><p>$SYS_TEW_NO_AT_BRIDGE: 1<li class=assertItem><p>$SYS_TEW_GTK_MODULES: gail:atk-bridge<li class=assertItem><p>$SYS_TEW_SHELL: /bin/bash<li class=assertItem><p>$SYS_TEW_GNOME_TERMINAL_SERVICE: :1.512<li class=assertItem><p>$SYS_TEW_APIMATION_HOME: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_TEW_GTK_IM_MODULE: ibus<li class=assertItem><p>$SYS_TEW_LC_MEASUREMENT: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_DISPLAY: :0<li class=assertItem><p>$SYS_TEW_XDG_SESSION_ID: 3<li class=assertItem><p>$SYS_TEW_DESKTOP_SESSION: ubuntu<li class=assertItem><p>$SYS_TEW_DBUS_SESSION_BUS_ADDRESS: unix:path<li class=assertItem><p>$SYS_TEW_SESSION_MANAGER: local/wafa:@/tmp/.ICE-unix/3062,unix/wafa:/tmp/.ICE-unix/3062<li class=assertItem><p>$SYS_TEW_LC_TELEPHONE: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_CHROME_DESKTOP: code-url-handler.desktop<li class=assertItem><p>$SYS_TEW_GNOME_TERMINAL_SCREEN: /org/gnome/Terminal/screen/a8916d88_de23_4892_9d9a_f811c620af59<li class=assertItem><p>$SYS_TEW_GJS_DEBUG_OUTPUT: stderr<li class=assertItem><p>$SYS_TEW_QT_IM_MODULE: ibus<li class=assertItem><p>$SYS_TEW_XMODIFIERS: @im<li class=assertItem><p>$SYS_TEW_SHLVL: 3<li class=assertItem><p>$SYS_TEW_LESSCLOSE: /usr/bin/lesspipe %s %s<li class=assertItem><p>$SYS_TEW_XDG_VTNR: 2<li class=assertItem><p>$SYS_TEW_QT4_IM_MODULE: xim<li class=assertItem><p>$SYS_TEW_XDG_RUNTIME_DIR: /run/user/1000<li class=assertItem><p>$SYS_TEW_LESSOPEN: | /usr/bin/lesspipe %s<li class=assertItem><p>$SYS_TEW__: /home/wafa/Downloads/apimation_0.54.7_linux_amd64/apimation<li class=assertItem><p>$SYS_TEW_APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: true<li class=assertItem><p>$SYS_TEW_LC_NUMERIC: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_HOME: /home/wafa<li class=assertItem><p>$SYS_TEW_XDG_DATA_DIRS: /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop<li class=assertItem><p>$SYS_TEW_PATH: /home/wafa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin<li class=assertItem><p>$SYS_TEW_CLUTTER_IM_MODULE: xim<li class=assertItem><p>$SYS_TEW_USER: wafa<li class=assertItem><p>$SYS_TEW_DEFAULTS_PATH: /usr/share/gconf/ubuntu.default.path<li class=assertItem><p>$SYS_TEW_XDG_CURRENT_DESKTOP: Unity<li class=assertItem><p>$SYS_TEW_XDG_SEAT: seat0<li class=assertItem><p>$SYS_TEW_LC_MONETARY: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_XDG_SESSION_DESKTOP: ubuntu<li class=assertItem><p>$SYS_TEW_GDMSESSION: ubuntu<li class=assertItem><p>$SYS_TEW_GJS_DEBUG_TOPICS: JS ERROR;JS LOG<li class=assertItem><p>$SYS_TEW_USERNAME: wafa</ul><ul class=caseVarsCollectionView><li class=assertItem><p>$id: 496<li class=assertItem><p>$name: swabw6<li class=assertItem><p>$status: io48pstz</ul><ul class=listVarsCollectionView></ul></div></div><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Step 1 : addPet xml</div><div class="stepStatus PASS"><p>PASS</div><div class=reportStepRtt>743.369µs</div></div><div class=stepDetailed style=display:none;position:relative><div class=stepDetailedLeftSide><div class="assertsTile stepDetailsTile active"><p>Asserts</div><div class="grepsTile stepDetailsTile"><p>Greps</div><div class="requestDataTile stepDetailsTile"><p>Request data</div><div class="responseDataTile stepDetailsTile"><p>Response data</div></div><div class=stepDetailedRightSide><ul class=assertCollectionView></ul><ul class=grepCollectionView></ul><div class=requestDataSection><pre><code>POST /v2/pet HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Go-http-client/1.1
+Content-Length: 201
+Accept-Encoding: gzip
+
+ &lt;properties&gt;
+     &lt;category&gt;$category&lt;/category&gt;
+     &lt;id&gt;496&lt;/id&gt;
+     &lt;name&gt;swabw6&lt;/name&gt;
+     &lt;photoUrls&gt;$photoUrls&lt;/photoUrls&gt;
+     &lt;status&gt;io48pstz&lt;/status&gt;
+     &lt;tags&gt;$tags&lt;/tags&gt;
+ &lt;/properties&gt;</code></pre><ul></ul></div><div class=responseDataSection><pre class=rawData><code>HTTP/1.1 404 Not Found
+Content-Length: 279
+Content-Type: text/html; charset=iso-8859-1
+Date: Thu, 23 Apr 2020 07:53:51 GMT
+Server: Apache/2.4.34 (Ubuntu)
+
+&lt;!DOCTYPE HTML PUBLIC &#34;-//IETF//DTD HTML 2.0//EN&#34;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL /v2/pet was not found on this server.&lt;/p&gt;
+&lt;hr&gt;
+&lt;address&gt;Apache/2.4.34 (Ubuntu) Server at 127.0.0.1 Port 80&lt;/address&gt;
+&lt;/body&gt;&lt;/html&gt;
+</code></pre><pre class=prettyJson><code></code></pre><button type=button class=prettyJSONButton>Format JSON</button></div></div></div><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Step 2 : updatePet xml</div><div class="stepStatus PASS"><p>PASS</div><div class=reportStepRtt>285.642µs</div></div><div class=stepDetailed style=display:none;position:relative><div class=stepDetailedLeftSide><div class="assertsTile stepDetailsTile active"><p>Asserts</div><div class="grepsTile stepDetailsTile"><p>Greps</div><div class="requestDataTile stepDetailsTile"><p>Request data</div><div class="responseDataTile stepDetailsTile"><p>Response data</div></div><div class=stepDetailedRightSide><ul class=assertCollectionView></ul><ul class=grepCollectionView></ul><div class=requestDataSection><pre><code>PUT /v2/pet HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Go-http-client/1.1
+Content-Length: 201
+Accept-Encoding: gzip
+
+ &lt;properties&gt;
+     &lt;id&gt;496&lt;/id&gt;
+     &lt;name&gt;swabw6&lt;/name&gt;
+     &lt;photoUrls&gt;$photoUrls&lt;/photoUrls&gt;
+     &lt;status&gt;io48pstz&lt;/status&gt;
+     &lt;tags&gt;$tags&lt;/tags&gt;
+     &lt;category&gt;$category&lt;/category&gt;
+ &lt;/properties&gt;</code></pre><ul></ul></div><div class=responseDataSection><pre class=rawData><code>HTTP/1.1 405 Method Not Allowed
+Content-Length: 302
+Allow: POST,OPTIONS,HEAD,GET
+Content-Type: text/html; charset=iso-8859-1
+Date: Thu, 23 Apr 2020 07:53:51 GMT
+Server: Apache/2.4.34 (Ubuntu)
+
+&lt;!DOCTYPE HTML PUBLIC &#34;-//IETF//DTD HTML 2.0//EN&#34;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;405 Method Not Allowed&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Method Not Allowed&lt;/h1&gt;
+&lt;p&gt;The requested method PUT is not allowed for the URL /v2/pet.&lt;/p&gt;
+&lt;hr&gt;
+&lt;address&gt;Apache/2.4.34 (Ubuntu) Server at 127.0.0.1 Port 80&lt;/address&gt;
+&lt;/body&gt;&lt;/html&gt;
+</code></pre><pre class=prettyJson><code></code></pre><button type=button class=prettyJSONButton>Format JSON</button></div></div></div></ul></ul><li class=case data-time=0.008014337 data-order=4 data-result=FAIL><ul class=reportCaseListView><li class=reportCaseView><div class=reportCaseHeader><div class=caseName><h3>pet CRUD urlencoded</h3><span>Case name</span></div><div class=caseTime><h3>8.014337ms</h3><span>Time to execute</span></div><div class="caseStatus FAIL"><p>FAIL</div></div><ul class=reportStepList style=display:none><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Variables</div></div><div class=stepDetailed style=display:none><div class=stepDetailedLeftSide><div class="globalVarsTile stepDetailsTile active"><p>Global vars</div><div class="caseVarsTile stepDetailsTile"><p>Case vars</div><div class="listVarsTile stepDetailsTile"><p>List vars</div></div><div class=stepDetailedRightSide style=max-height:18em><ul class=globalVarsCollectionView><li class=assertItem><p>$baseURL: http://127.0.0.1<li class=assertItem><p>$SYS_CLI_DESKTOP_SESSION: ubuntu<li class=assertItem><p>$SYS_CLI_IM_CONFIG_PHASE: 2<li class=assertItem><p>$SYS_CLI_XDG_CONFIG_DIRS: /etc/xdg/xdg-ubuntu:/etc/xdg<li class=assertItem><p>$SYS_CLI_XDG_RUNTIME_DIR: /run/user/1000<li class=assertItem><p>$SYS_CLI_XDG_SEAT: seat0<li class=assertItem><p>$SYS_CLI_LC_TIME: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_MANDATORY_PATH: /usr/share/gconf/ubuntu.mandatory.path<li class=assertItem><p>$SYS_CLI_OLDPWD: /home/wafa/Desktop/smoke test<li class=assertItem><p>$SYS_CLI_LOGNAME: wafa<li class=assertItem><p>$SYS_CLI_QT_IM_MODULE: ibus<li class=assertItem><p>$SYS_CLI_GNOME_DESKTOP_SESSION_ID: this-is-deprecated<li class=assertItem><p>$SYS_CLI_LC_TELEPHONE: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_LESSOPEN: | /usr/bin/lesspipe %s<li class=assertItem><p>$SYS_CLI_DBUS_SESSION_BUS_ADDRESS: unix:path=/run/user/1000/bus<li class=assertItem><p>$SYS_CLI_LS_COLORS: rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:<li class=assertItem><p>$SYS_CLI_SHLVL: 3<li class=assertItem><p>$SYS_CLI_VTE_VERSION: 5401<li class=assertItem><p>$SYS_CLI_XMODIFIERS: @im=ibus<li class=assertItem><p>$SYS_CLI_APIMATION_HOME: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_CLI_CHROME_DESKTOP: code-url-handler.desktop<li class=assertItem><p>$SYS_CLI_CLUTTER_IM_MODULE: xim<li class=assertItem><p>$SYS_CLI_LESSCLOSE: /usr/bin/lesspipe %s %s<li class=assertItem><p>$SYS_CLI_NO_AT_BRIDGE: 1<li class=assertItem><p>$SYS_CLI_QT_ACCESSIBILITY: 1<li class=assertItem><p>$SYS_CLI_SHELL: /bin/bash<li class=assertItem><p>$SYS_CLI_SSH_AUTH_SOCK: /run/user/1000/keyring/ssh<li class=assertItem><p>$SYS_CLI_APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: true<li class=assertItem><p>$SYS_CLI_GJS_DEBUG_OUTPUT: stderr<li class=assertItem><p>$SYS_CLI_LC_PAPER: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_USER: wafa<li class=assertItem><p>$SYS_CLI__: /home/wafa/Downloads/apimation_0.54.7_linux_amd64/apimation<li class=assertItem><p>$SYS_CLI_COLORTERM: truecolor<li class=assertItem><p>$SYS_CLI_PWD: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_CLI_SSH_AGENT_PID: 3192<li class=assertItem><p>$SYS_CLI_XDG_MENU_PREFIX: gnome-<li class=assertItem><p>$SYS_CLI_XDG_SESSION_DESKTOP: ubuntu<li class=assertItem><p>$SYS_CLI_DEFAULTS_PATH: /usr/share/gconf/ubuntu.default.path<li class=assertItem><p>$SYS_CLI_LC_NAME: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_QT4_IM_MODULE: xim<li class=assertItem><p>$SYS_CLI_DISPLAY: :0<li class=assertItem><p>$SYS_CLI_LC_IDENTIFICATION: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_GNOME_TERMINAL_SERVICE: :1.512<li class=assertItem><p>$SYS_CLI_PATH: /home/wafa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin<li class=assertItem><p>$SYS_CLI_XDG_SESSION_ID: 3<li class=assertItem><p>$SYS_CLI_XDG_DATA_DIRS: /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop<li class=assertItem><p>$SYS_CLI_GJS_DEBUG_TOPICS: JS ERROR;JS LOG<li class=assertItem><p>$SYS_CLI_LC_MEASUREMENT: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_LC_NUMERIC: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_GTK_MODULES: gail:atk-bridge<li class=assertItem><p>$SYS_CLI_HOME: /home/wafa<li class=assertItem><p>$SYS_CLI_SESSION_MANAGER: local/wafa:@/tmp/.ICE-unix/3062,unix/wafa:/tmp/.ICE-unix/3062<li class=assertItem><p>$SYS_CLI_LC_ADDRESS: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_TERM_PROGRAM: vscode<li class=assertItem><p>$SYS_CLI_XDG_SESSION_TYPE: x11<li class=assertItem><p>$SYS_CLI_USERNAME: wafa<li class=assertItem><p>$SYS_CLI_WINDOWPATH: 2<li class=assertItem><p>$SYS_CLI_GNOME_TERMINAL_SCREEN: /org/gnome/Terminal/screen/a8916d88_de23_4892_9d9a_f811c620af59<li class=assertItem><p>$SYS_CLI_GPG_AGENT_INFO: /run/user/1000/gnupg/S.gpg-agent:0:1<li class=assertItem><p>$SYS_CLI_GTK_IM_MODULE: ibus<li class=assertItem><p>$SYS_CLI_XAUTHORITY: /run/user/1000/gdm/Xauthority<li class=assertItem><p>$SYS_CLI_XDG_CURRENT_DESKTOP: Unity<li class=assertItem><p>$SYS_CLI_LANG: en_US.UTF-8<li class=assertItem><p>$SYS_CLI_LC_MONETARY: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_TERM_PROGRAM_VERSION: 1.44.2<li class=assertItem><p>$SYS_CLI_XDG_VTNR: 2<li class=assertItem><p>$SYS_CLI_GDMSESSION: ubuntu<li class=assertItem><p>$SYS_CLI_GNOME_SHELL_SESSION_MODE: ubuntu<li class=assertItem><p>$SYS_CLI_TERM: xterm-256color<li class=assertItem><p>$SYS_TEW_GNOME_SHELL_SESSION_MODE: ubuntu<li class=assertItem><p>$SYS_TEW_QT4_IM_MODULE: xim<li class=assertItem><p>$SYS_TEW_LOGNAME: wafa<li class=assertItem><p>$SYS_TEW_PATH: /home/wafa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin<li class=assertItem><p>$SYS_TEW_LC_ADDRESS: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_VTE_VERSION: 5401<li class=assertItem><p>$SYS_TEW_SHLVL: 3<li class=assertItem><p>$SYS_TEW_XDG_RUNTIME_DIR: /run/user/1000<li class=assertItem><p>$SYS_TEW_LC_TIME: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_LESSCLOSE: /usr/bin/lesspipe %s %s<li class=assertItem><p>$SYS_TEW_NO_AT_BRIDGE: 1<li class=assertItem><p>$SYS_TEW_SSH_AUTH_SOCK: /run/user/1000/keyring/ssh<li class=assertItem><p>$SYS_TEW_TERM_PROGRAM: vscode<li class=assertItem><p>$SYS_TEW_GNOME_TERMINAL_SERVICE: :1.512<li class=assertItem><p>$SYS_TEW_GNOME_DESKTOP_SESSION_ID: this-is-deprecated<li class=assertItem><p>$SYS_TEW_LC_IDENTIFICATION: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_USERNAME: wafa<li class=assertItem><p>$SYS_TEW_HOME: /home/wafa<li class=assertItem><p>$SYS_TEW_XMODIFIERS: @im<li class=assertItem><p>$SYS_TEW_XDG_CURRENT_DESKTOP: Unity<li class=assertItem><p>$SYS_TEW_XDG_SESSION_DESKTOP: ubuntu<li class=assertItem><p>$SYS_TEW_LC_NUMERIC: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_APIMATION_HOME: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_TEW_XDG_SESSION_ID: 3<li class=assertItem><p>$SYS_TEW_PWD: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_TEW_TERM_PROGRAM_VERSION: 1.44.2<li class=assertItem><p>$SYS_TEW_XDG_SESSION_TYPE: x11<li class=assertItem><p>$SYS_TEW_GNOME_TERMINAL_SCREEN: /org/gnome/Terminal/screen/a8916d88_de23_4892_9d9a_f811c620af59<li class=assertItem><p>$SYS_TEW_SSH_AGENT_PID: 3192<li class=assertItem><p>$SYS_TEW_IM_CONFIG_PHASE: 2<li class=assertItem><p>$SYS_TEW_LC_TELEPHONE: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_GJS_DEBUG_TOPICS: JS ERROR;JS LOG<li class=assertItem><p>$SYS_TEW_LC_MONETARY: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_QT_ACCESSIBILITY: 1<li class=assertItem><p>$SYS_TEW_TERM: xterm-256color<li class=assertItem><p>$SYS_TEW_XDG_SEAT: seat0<li class=assertItem><p>$SYS_TEW_GPG_AGENT_INFO: /run/user/1000/gnupg/S.gpg-agent:0:1<li class=assertItem><p>$SYS_TEW_GTK_IM_MODULE: ibus<li class=assertItem><p>$SYS_TEW_XDG_MENU_PREFIX: gnome-<li class=assertItem><p>$SYS_TEW_DEFAULTS_PATH: /usr/share/gconf/ubuntu.default.path<li class=assertItem><p>$SYS_TEW_XDG_DATA_DIRS: /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop<li class=assertItem><p>$SYS_TEW_GTK_MODULES: gail:atk-bridge<li class=assertItem><p>$SYS_TEW_LC_NAME: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_DESKTOP_SESSION: ubuntu<li class=assertItem><p>$SYS_TEW_USER: wafa<li class=assertItem><p>$SYS_TEW_GDMSESSION: ubuntu<li class=assertItem><p>$SYS_TEW_LS_COLORS: rs<li class=assertItem><p>$SYS_TEW_OLDPWD: /home/wafa/Desktop/smoke test<li class=assertItem><p>$SYS_TEW_COLORTERM: truecolor<li class=assertItem><p>$SYS_TEW_CHROME_DESKTOP: code-url-handler.desktop<li class=assertItem><p>$SYS_TEW_MANDATORY_PATH: /usr/share/gconf/ubuntu.mandatory.path<li class=assertItem><p>$SYS_TEW_APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: true<li class=assertItem><p>$SYS_TEW_QT_IM_MODULE: ibus<li class=assertItem><p>$SYS_TEW_DBUS_SESSION_BUS_ADDRESS: unix:path<li class=assertItem><p>$SYS_TEW_XAUTHORITY: /run/user/1000/gdm/Xauthority<li class=assertItem><p>$SYS_TEW_LC_MEASUREMENT: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_LC_PAPER: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_LESSOPEN: | /usr/bin/lesspipe %s<li class=assertItem><p>$SYS_TEW__: /home/wafa/Downloads/apimation_0.54.7_linux_amd64/apimation<li class=assertItem><p>$SYS_TEW_GJS_DEBUG_OUTPUT: stderr<li class=assertItem><p>$SYS_TEW_XDG_CONFIG_DIRS: /etc/xdg/xdg-ubuntu:/etc/xdg<li class=assertItem><p>$SYS_TEW_SESSION_MANAGER: local/wafa:@/tmp/.ICE-unix/3062,unix/wafa:/tmp/.ICE-unix/3062<li class=assertItem><p>$SYS_TEW_WINDOWPATH: 2<li class=assertItem><p>$SYS_TEW_SHELL: /bin/bash<li class=assertItem><p>$SYS_TEW_CLUTTER_IM_MODULE: xim<li class=assertItem><p>$SYS_TEW_LANG: en_US.UTF-8<li class=assertItem><p>$SYS_TEW_DISPLAY: :0<li class=assertItem><p>$SYS_TEW_XDG_VTNR: 2</ul><ul class=caseVarsCollectionView></ul><ul class=listVarsCollectionView><li class=assertItem><p>$category:
+$categoryList =
+Could not find any submatch<li class=assertItem><p>$id:
+$idList =
+Could not find any submatch<li class=assertItem><p>$name:
+$nameList =
+Could not find any submatch<li class=assertItem><p>$photoUrls:
+$photoUrlsList =
+Could not find any submatch<li class=assertItem><p>$status:
+$statusList =
+Could not find any submatch<li class=assertItem><p>$tags:
+$tagsList =
+Could not find any submatch</ul></div></div><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Step 1 : updatePetWithForm urlencoded</div><div class="stepStatus PASS"><p>PASS</div><div class=reportStepRtt>538.031µs</div></div><div class=stepDetailed style=display:none;position:relative><div class=stepDetailedLeftSide><div class="assertsTile stepDetailsTile active"><p>Asserts</div><div class="grepsTile stepDetailsTile"><p>Greps</div><div class="requestDataTile stepDetailsTile"><p>Request data</div><div class="responseDataTile stepDetailsTile"><p>Response data</div></div><div class=stepDetailedRightSide><ul class=assertCollectionView></ul><ul class=grepCollectionView></ul><div class=requestDataSection><pre><code>POST /v2/pet/$petId HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Go-http-client/1.1
+Content-Length: 0
+Accept-Encoding: gzip
+
+</code></pre><ul></ul></div><div class=responseDataSection><pre class=rawData><code>HTTP/1.1 404 Not Found
+Content-Length: 286
+Content-Type: text/html; charset=iso-8859-1
+Date: Thu, 23 Apr 2020 07:53:52 GMT
+Server: Apache/2.4.34 (Ubuntu)
+
+&lt;!DOCTYPE HTML PUBLIC &#34;-//IETF//DTD HTML 2.0//EN&#34;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL /v2/pet/$petId was not found on this server.&lt;/p&gt;
+&lt;hr&gt;
+&lt;address&gt;Apache/2.4.34 (Ubuntu) Server at 127.0.0.1 Port 80&lt;/address&gt;
+&lt;/body&gt;&lt;/html&gt;
+</code></pre><pre class=prettyJson><code></code></pre><button type=button class=prettyJSONButton>Format JSON</button></div></div></div><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Step 2 : getPetById urlencoded</div><div class="stepStatus FAIL"><p>FAIL</div><div class=reportStepRtt>130.98µs</div></div><div class=stepDetailed style=display:none;position:relative><div class=stepDetailedLeftSide><div class="assertsTile stepDetailsTile active"><p>Asserts</div><div class="grepsTile stepDetailsTile"><p>Greps</div><div class="requestDataTile stepDetailsTile"><p>Request data</div><div class="responseDataTile stepDetailsTile"><p>Response data</div></div><div class=stepDetailedRightSide><ul class=assertCollectionView><li class=assertItem><p>Extracted value '404 Not Found' from extract type 'status' regex does NOT match expected value '200'<div class=FAIL></div><li class=assertItem><p>Extracted value '{{Check response body data}}' from extract type 'text' with key/path 'name' is not equal to expected value 'Could not find any submatch'<div class=FAIL></div><li class=assertItem><p>Extracted value '{{Check response body data}}' from extract type 'text' with key/path 'photoUrls' is not equal to expected value 'Could not find any submatch'<div class=FAIL></div></ul><ul class=grepCollectionView><li class=assertItem><p>$category: Could not find any submatch<li class=assertItem><p>$id: Could not find any submatch<li class=assertItem><p>$name: Could not find any submatch<li class=assertItem><p>$photoUrls: Could not find any submatch<li class=assertItem><p>$status: Could not find any submatch<li class=assertItem><p>$tags: Could not find any submatch</ul><div class=requestDataSection><pre><code>GET /v2/pet/$petId HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Go-http-client/1.1
+Accept-Encoding: gzip
+
+</code></pre><ul></ul></div><div class=responseDataSection><pre class=rawData><code>HTTP/1.1 404 Not Found
+Content-Length: 286
+Content-Type: text/html; charset=iso-8859-1
+Date: Thu, 23 Apr 2020 07:53:52 GMT
+Server: Apache/2.4.34 (Ubuntu)
+
+&lt;!DOCTYPE HTML PUBLIC &#34;-//IETF//DTD HTML 2.0//EN&#34;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL /v2/pet/$petId was not found on this server.&lt;/p&gt;
+&lt;hr&gt;
+&lt;address&gt;Apache/2.4.34 (Ubuntu) Server at 127.0.0.1 Port 80&lt;/address&gt;
+&lt;/body&gt;&lt;/html&gt;
+</code></pre><pre class=prettyJson><code></code></pre><button type=button class=prettyJSONButton>Format JSON</button></div></div></div><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Step 3 : updatePetWithForm urlencoded</div><div class="stepStatus PASS"><p>PASS</div><div class=reportStepRtt>221.575µs</div></div><div class=stepDetailed style=display:none;position:relative><div class=stepDetailedLeftSide><div class="assertsTile stepDetailsTile active"><p>Asserts</div><div class="grepsTile stepDetailsTile"><p>Greps</div><div class="requestDataTile stepDetailsTile"><p>Request data</div><div class="responseDataTile stepDetailsTile"><p>Response data</div></div><div class=stepDetailedRightSide><ul class=assertCollectionView></ul><ul class=grepCollectionView></ul><div class=requestDataSection><pre><code>POST /v2/pet/$petId HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Go-http-client/1.1
+Content-Length: 0
+Accept-Encoding: gzip
+
+</code></pre><ul></ul></div><div class=responseDataSection><pre class=rawData><code>HTTP/1.1 404 Not Found
+Content-Length: 286
+Content-Type: text/html; charset=iso-8859-1
+Date: Thu, 23 Apr 2020 07:53:52 GMT
+Server: Apache/2.4.34 (Ubuntu)
+
+&lt;!DOCTYPE HTML PUBLIC &#34;-//IETF//DTD HTML 2.0//EN&#34;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL /v2/pet/$petId was not found on this server.&lt;/p&gt;
+&lt;hr&gt;
+&lt;address&gt;Apache/2.4.34 (Ubuntu) Server at 127.0.0.1 Port 80&lt;/address&gt;
+&lt;/body&gt;&lt;/html&gt;
+</code></pre><pre class=prettyJson><code></code></pre><button type=button class=prettyJSONButton>Format JSON</button></div></div></div><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Step 4 : findPetsByTags urlencoded</div><div class="stepStatus FAIL"><p>FAIL</div><div class=reportStepRtt>135.235µs</div></div><div class=stepDetailed style=display:none;position:relative><div class=stepDetailedLeftSide><div class="assertsTile stepDetailsTile active"><p>Asserts</div><div class="grepsTile stepDetailsTile"><p>Greps</div><div class="requestDataTile stepDetailsTile"><p>Request data</div><div class="responseDataTile stepDetailsTile"><p>Response data</div></div><div class=stepDetailedRightSide><ul class=assertCollectionView><li class=assertItem><p>Extracted value '404 Not Found' from extract type 'status' regex does NOT match expected value '200'<div class=FAIL></div></ul><ul class=grepCollectionView></ul><div class=requestDataSection><pre><code>GET /v2/pet/findByTags?tags=Could&#43;not&#43;find&#43;any&#43;submatch HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Go-http-client/1.1
+Accept-Encoding: gzip
+
+</code></pre><ul></ul></div><div class=responseDataSection><pre class=rawData><code>HTTP/1.1 404 Not Found
+Content-Length: 290
+Content-Type: text/html; charset=iso-8859-1
+Date: Thu, 23 Apr 2020 07:53:52 GMT
+Server: Apache/2.4.34 (Ubuntu)
+
+&lt;!DOCTYPE HTML PUBLIC &#34;-//IETF//DTD HTML 2.0//EN&#34;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL /v2/pet/findByTags was not found on this server.&lt;/p&gt;
+&lt;hr&gt;
+&lt;address&gt;Apache/2.4.34 (Ubuntu) Server at 127.0.0.1 Port 80&lt;/address&gt;
+&lt;/body&gt;&lt;/html&gt;
+</code></pre><pre class=prettyJson><code></code></pre><button type=button class=prettyJSONButton>Format JSON</button></div></div></div><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Step 5 : deletePet urlencoded</div><div class="stepStatus PASS"><p>PASS</div><div class=reportStepRtt>151.079µs</div></div><div class=stepDetailed style=display:none;position:relative><div class=stepDetailedLeftSide><div class="assertsTile stepDetailsTile active"><p>Asserts</div><div class="grepsTile stepDetailsTile"><p>Greps</div><div class="requestDataTile stepDetailsTile"><p>Request data</div><div class="responseDataTile stepDetailsTile"><p>Response data</div></div><div class=stepDetailedRightSide><ul class=assertCollectionView></ul><ul class=grepCollectionView></ul><div class=requestDataSection><pre><code>DELETE /v2/pet/$petId HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Go-http-client/1.1
+Api_key: $api_key
+Accept-Encoding: gzip
+
+</code></pre><ul></ul></div><div class=responseDataSection><pre class=rawData><code>HTTP/1.1 405 Method Not Allowed
+Content-Length: 312
+Allow: POST,OPTIONS,HEAD,GET
+Content-Type: text/html; charset=iso-8859-1
+Date: Thu, 23 Apr 2020 07:53:52 GMT
+Server: Apache/2.4.34 (Ubuntu)
+
+&lt;!DOCTYPE HTML PUBLIC &#34;-//IETF//DTD HTML 2.0//EN&#34;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;405 Method Not Allowed&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Method Not Allowed&lt;/h1&gt;
+&lt;p&gt;The requested method DELETE is not allowed for the URL /v2/pet/$petId.&lt;/p&gt;
+&lt;hr&gt;
+&lt;address&gt;Apache/2.4.34 (Ubuntu) Server at 127.0.0.1 Port 80&lt;/address&gt;
+&lt;/body&gt;&lt;/html&gt;
+</code></pre><pre class=prettyJson><code></code></pre><button type=button class=prettyJSONButton>Format JSON</button></div></div></div></ul></ul><li class=case data-time=0.001707801 data-order=5 data-result=FAIL><ul class=reportCaseListView><li class=reportCaseView><div class=reportCaseHeader><div class=caseName><h3>store CRUD urlencoded</h3><span>Case name</span></div><div class=caseTime><h3>1.707801ms</h3><span>Time to execute</span></div><div class="caseStatus FAIL"><p>FAIL</div></div><ul class=reportStepList style=display:none><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Variables</div></div><div class=stepDetailed style=display:none><div class=stepDetailedLeftSide><div class="globalVarsTile stepDetailsTile active"><p>Global vars</div><div class="caseVarsTile stepDetailsTile"><p>Case vars</div><div class="listVarsTile stepDetailsTile"><p>List vars</div></div><div class=stepDetailedRightSide style=max-height:18em><ul class=globalVarsCollectionView><li class=assertItem><p>$baseURL: http://127.0.0.1<li class=assertItem><p>$SYS_CLI_LANG: en_US.UTF-8<li class=assertItem><p>$SYS_CLI_LC_MONETARY: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_TERM_PROGRAM_VERSION: 1.44.2<li class=assertItem><p>$SYS_CLI_XAUTHORITY: /run/user/1000/gdm/Xauthority<li class=assertItem><p>$SYS_CLI_XDG_CURRENT_DESKTOP: Unity<li class=assertItem><p>$SYS_CLI_GDMSESSION: ubuntu<li class=assertItem><p>$SYS_CLI_GNOME_SHELL_SESSION_MODE: ubuntu<li class=assertItem><p>$SYS_CLI_TERM: xterm-256color<li class=assertItem><p>$SYS_CLI_XDG_VTNR: 2<li class=assertItem><p>$SYS_CLI_DESKTOP_SESSION: ubuntu<li class=assertItem><p>$SYS_CLI_IM_CONFIG_PHASE: 2<li class=assertItem><p>$SYS_CLI_LC_TIME: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_MANDATORY_PATH: /usr/share/gconf/ubuntu.mandatory.path<li class=assertItem><p>$SYS_CLI_OLDPWD: /home/wafa/Desktop/smoke test<li class=assertItem><p>$SYS_CLI_XDG_CONFIG_DIRS: /etc/xdg/xdg-ubuntu:/etc/xdg<li class=assertItem><p>$SYS_CLI_XDG_RUNTIME_DIR: /run/user/1000<li class=assertItem><p>$SYS_CLI_XDG_SEAT: seat0<li class=assertItem><p>$SYS_CLI_GNOME_DESKTOP_SESSION_ID: this-is-deprecated<li class=assertItem><p>$SYS_CLI_LC_TELEPHONE: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_LESSOPEN: | /usr/bin/lesspipe %s<li class=assertItem><p>$SYS_CLI_LOGNAME: wafa<li class=assertItem><p>$SYS_CLI_QT_IM_MODULE: ibus<li class=assertItem><p>$SYS_CLI_APIMATION_HOME: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_CLI_CHROME_DESKTOP: code-url-handler.desktop<li class=assertItem><p>$SYS_CLI_CLUTTER_IM_MODULE: xim<li class=assertItem><p>$SYS_CLI_DBUS_SESSION_BUS_ADDRESS: unix:path=/run/user/1000/bus<li class=assertItem><p>$SYS_CLI_LS_COLORS: rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:<li class=assertItem><p>$SYS_CLI_SHLVL: 3<li class=assertItem><p>$SYS_CLI_VTE_VERSION: 5401<li class=assertItem><p>$SYS_CLI_XMODIFIERS: @im=ibus<li class=assertItem><p>$SYS_CLI_APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: true<li class=assertItem><p>$SYS_CLI_GJS_DEBUG_OUTPUT: stderr<li class=assertItem><p>$SYS_CLI_LC_PAPER: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_LESSCLOSE: /usr/bin/lesspipe %s %s<li class=assertItem><p>$SYS_CLI_NO_AT_BRIDGE: 1<li class=assertItem><p>$SYS_CLI_QT_ACCESSIBILITY: 1<li class=assertItem><p>$SYS_CLI_SHELL: /bin/bash<li class=assertItem><p>$SYS_CLI_SSH_AUTH_SOCK: /run/user/1000/keyring/ssh<li class=assertItem><p>$SYS_CLI_USER: wafa<li class=assertItem><p>$SYS_CLI_COLORTERM: truecolor<li class=assertItem><p>$SYS_CLI_PWD: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_CLI_SSH_AGENT_PID: 3192<li class=assertItem><p>$SYS_CLI__: /home/wafa/Downloads/apimation_0.54.7_linux_amd64/apimation<li class=assertItem><p>$SYS_CLI_XDG_MENU_PREFIX: gnome-<li class=assertItem><p>$SYS_CLI_XDG_SESSION_DESKTOP: ubuntu<li class=assertItem><p>$SYS_CLI_DEFAULTS_PATH: /usr/share/gconf/ubuntu.default.path<li class=assertItem><p>$SYS_CLI_LC_NAME: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_QT4_IM_MODULE: xim<li class=assertItem><p>$SYS_CLI_DISPLAY: :0<li class=assertItem><p>$SYS_CLI_LC_IDENTIFICATION: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_GNOME_TERMINAL_SERVICE: :1.512<li class=assertItem><p>$SYS_CLI_PATH: /home/wafa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin<li class=assertItem><p>$SYS_CLI_XDG_SESSION_ID: 3<li class=assertItem><p>$SYS_CLI_GJS_DEBUG_TOPICS: JS ERROR;JS LOG<li class=assertItem><p>$SYS_CLI_LC_MEASUREMENT: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_LC_NUMERIC: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_XDG_DATA_DIRS: /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop<li class=assertItem><p>$SYS_CLI_GTK_MODULES: gail:atk-bridge<li class=assertItem><p>$SYS_CLI_HOME: /home/wafa<li class=assertItem><p>$SYS_CLI_SESSION_MANAGER: local/wafa:@/tmp/.ICE-unix/3062,unix/wafa:/tmp/.ICE-unix/3062<li class=assertItem><p>$SYS_CLI_LC_ADDRESS: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_TERM_PROGRAM: vscode<li class=assertItem><p>$SYS_CLI_XDG_SESSION_TYPE: x11<li class=assertItem><p>$SYS_CLI_GNOME_TERMINAL_SCREEN: /org/gnome/Terminal/screen/a8916d88_de23_4892_9d9a_f811c620af59<li class=assertItem><p>$SYS_CLI_GPG_AGENT_INFO: /run/user/1000/gnupg/S.gpg-agent:0:1<li class=assertItem><p>$SYS_CLI_GTK_IM_MODULE: ibus<li class=assertItem><p>$SYS_CLI_USERNAME: wafa<li class=assertItem><p>$SYS_CLI_WINDOWPATH: 2<li class=assertItem><p>$SYS_TEW_SHELL: /bin/bash<li class=assertItem><p>$SYS_TEW_XDG_SEAT: seat0<li class=assertItem><p>$SYS_TEW_GDMSESSION: ubuntu<li class=assertItem><p>$SYS_TEW_GJS_DEBUG_TOPICS: JS ERROR;JS LOG<li class=assertItem><p>$SYS_TEW_XDG_VTNR: 2<li class=assertItem><p>$SYS_TEW_APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: true<li class=assertItem><p>$SYS_TEW_GNOME_TERMINAL_SCREEN: /org/gnome/Terminal/screen/a8916d88_de23_4892_9d9a_f811c620af59<li class=assertItem><p>$SYS_TEW_XDG_CONFIG_DIRS: /etc/xdg/xdg-ubuntu:/etc/xdg<li class=assertItem><p>$SYS_TEW_OLDPWD: /home/wafa/Desktop/smoke test<li class=assertItem><p>$SYS_TEW_CHROME_DESKTOP: code-url-handler.desktop<li class=assertItem><p>$SYS_TEW_HOME: /home/wafa<li class=assertItem><p>$SYS_TEW_GNOME_TERMINAL_SERVICE: :1.512<li class=assertItem><p>$SYS_TEW_XDG_SESSION_DESKTOP: ubuntu<li class=assertItem><p>$SYS_TEW_GJS_DEBUG_OUTPUT: stderr<li class=assertItem><p>$SYS_TEW_GTK_MODULES: gail:atk-bridge<li class=assertItem><p>$SYS_TEW__: /home/wafa/Downloads/apimation_0.54.7_linux_amd64/apimation<li class=assertItem><p>$SYS_TEW_LS_COLORS: rs<li class=assertItem><p>$SYS_TEW_SSH_AUTH_SOCK: /run/user/1000/keyring/ssh<li class=assertItem><p>$SYS_TEW_QT_IM_MODULE: ibus<li class=assertItem><p>$SYS_TEW_DBUS_SESSION_BUS_ADDRESS: unix:path<li class=assertItem><p>$SYS_TEW_LESSCLOSE: /usr/bin/lesspipe %s %s<li class=assertItem><p>$SYS_TEW_LC_NAME: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_QT_ACCESSIBILITY: 1<li class=assertItem><p>$SYS_TEW_USERNAME: wafa<li class=assertItem><p>$SYS_TEW_PWD: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_TEW_TERM_PROGRAM: vscode<li class=assertItem><p>$SYS_TEW_LC_TELEPHONE: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_GTK_IM_MODULE: ibus<li class=assertItem><p>$SYS_TEW_APIMATION_HOME: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_TEW_TERM_PROGRAM_VERSION: 1.44.2<li class=assertItem><p>$SYS_TEW_TERM: xterm-256color<li class=assertItem><p>$SYS_TEW_XMODIFIERS: @im<li class=assertItem><p>$SYS_TEW_XDG_MENU_PREFIX: gnome-<li class=assertItem><p>$SYS_TEW_LC_NUMERIC: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_PATH: /home/wafa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin<li class=assertItem><p>$SYS_TEW_QT4_IM_MODULE: xim<li class=assertItem><p>$SYS_TEW_XDG_SESSION_TYPE: x11<li class=assertItem><p>$SYS_TEW_XDG_CURRENT_DESKTOP: Unity<li class=assertItem><p>$SYS_TEW_LC_PAPER: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_COLORTERM: truecolor<li class=assertItem><p>$SYS_TEW_NO_AT_BRIDGE: 1<li class=assertItem><p>$SYS_TEW_LC_MONETARY: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_WINDOWPATH: 2<li class=assertItem><p>$SYS_TEW_VTE_VERSION: 5401<li class=assertItem><p>$SYS_TEW_LESSOPEN: | /usr/bin/lesspipe %s<li class=assertItem><p>$SYS_TEW_LANG: en_US.UTF-8<li class=assertItem><p>$SYS_TEW_GNOME_SHELL_SESSION_MODE: ubuntu<li class=assertItem><p>$SYS_TEW_XDG_DATA_DIRS: /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop<li class=assertItem><p>$SYS_TEW_CLUTTER_IM_MODULE: xim<li class=assertItem><p>$SYS_TEW_LC_ADDRESS: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_IM_CONFIG_PHASE: 2<li class=assertItem><p>$SYS_TEW_GPG_AGENT_INFO: /run/user/1000/gnupg/S.gpg-agent:0:1<li class=assertItem><p>$SYS_TEW_MANDATORY_PATH: /usr/share/gconf/ubuntu.mandatory.path<li class=assertItem><p>$SYS_TEW_USER: wafa<li class=assertItem><p>$SYS_TEW_DESKTOP_SESSION: ubuntu<li class=assertItem><p>$SYS_TEW_GNOME_DESKTOP_SESSION_ID: this-is-deprecated<li class=assertItem><p>$SYS_TEW_XDG_RUNTIME_DIR: /run/user/1000<li class=assertItem><p>$SYS_TEW_XAUTHORITY: /run/user/1000/gdm/Xauthority<li class=assertItem><p>$SYS_TEW_SESSION_MANAGER: local/wafa:@/tmp/.ICE-unix/3062,unix/wafa:/tmp/.ICE-unix/3062<li class=assertItem><p>$SYS_TEW_LC_TIME: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_DISPLAY: :0<li class=assertItem><p>$SYS_TEW_XDG_SESSION_ID: 3<li class=assertItem><p>$SYS_TEW_SSH_AGENT_PID: 3192<li class=assertItem><p>$SYS_TEW_DEFAULTS_PATH: /usr/share/gconf/ubuntu.default.path<li class=assertItem><p>$SYS_TEW_LC_IDENTIFICATION: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_LC_MEASUREMENT: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_SHLVL: 3<li class=assertItem><p>$SYS_TEW_LOGNAME: wafa</ul><ul class=caseVarsCollectionView></ul><ul class=listVarsCollectionView><li class=assertItem><p>$complete:
+$completeList =
+Could not find any submatch<li class=assertItem><p>$id:
+$idList =
+Could not find any submatch<li class=assertItem><p>$petId:
+$petIdList =
+Could not find any submatch<li class=assertItem><p>$quantity:
+$quantityList =
+Could not find any submatch<li class=assertItem><p>$shipDate:
+$shipDateList =
+Could not find any submatch<li class=assertItem><p>$status:
+$statusList =
+Could not find any submatch</ul></div></div><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Step 1 : getOrderById urlencoded</div><div class="stepStatus FAIL"><p>FAIL</div><div class=reportStepRtt>611.406µs</div></div><div class=stepDetailed style=display:none;position:relative><div class=stepDetailedLeftSide><div class="assertsTile stepDetailsTile active"><p>Asserts</div><div class="grepsTile stepDetailsTile"><p>Greps</div><div class="requestDataTile stepDetailsTile"><p>Request data</div><div class="responseDataTile stepDetailsTile"><p>Response data</div></div><div class=stepDetailedRightSide><ul class=assertCollectionView><li class=assertItem><p>Extracted value '404 Not Found' from extract type 'status' regex does NOT match expected value '200'<div class=FAIL></div></ul><ul class=grepCollectionView><li class=assertItem><p>$complete: Could not find any submatch<li class=assertItem><p>$id: Could not find any submatch<li class=assertItem><p>$petId: Could not find any submatch<li class=assertItem><p>$quantity: Could not find any submatch<li class=assertItem><p>$shipDate: Could not find any submatch<li class=assertItem><p>$status: Could not find any submatch</ul><div class=requestDataSection><pre><code>GET /v2/store/order/$orderId HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Go-http-client/1.1
+Accept-Encoding: gzip
+
+</code></pre><ul></ul></div><div class=responseDataSection><pre class=rawData><code>HTTP/1.1 404 Not Found
+Content-Length: 296
+Content-Type: text/html; charset=iso-8859-1
+Date: Thu, 23 Apr 2020 07:53:52 GMT
+Server: Apache/2.4.34 (Ubuntu)
+
+&lt;!DOCTYPE HTML PUBLIC &#34;-//IETF//DTD HTML 2.0//EN&#34;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL /v2/store/order/$orderId was not found on this server.&lt;/p&gt;
+&lt;hr&gt;
+&lt;address&gt;Apache/2.4.34 (Ubuntu) Server at 127.0.0.1 Port 80&lt;/address&gt;
+&lt;/body&gt;&lt;/html&gt;
+</code></pre><pre class=prettyJson><code></code></pre><button type=button class=prettyJSONButton>Format JSON</button></div></div></div><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Step 2 : deleteOrder urlencoded</div><div class="stepStatus PASS"><p>PASS</div><div class=reportStepRtt>249.998µs</div></div><div class=stepDetailed style=display:none;position:relative><div class=stepDetailedLeftSide><div class="assertsTile stepDetailsTile active"><p>Asserts</div><div class="grepsTile stepDetailsTile"><p>Greps</div><div class="requestDataTile stepDetailsTile"><p>Request data</div><div class="responseDataTile stepDetailsTile"><p>Response data</div></div><div class=stepDetailedRightSide><ul class=assertCollectionView></ul><ul class=grepCollectionView></ul><div class=requestDataSection><pre><code>DELETE /v2/store/order/$orderId HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Go-http-client/1.1
+Accept-Encoding: gzip
+
+</code></pre><ul></ul></div><div class=responseDataSection><pre class=rawData><code>HTTP/1.1 405 Method Not Allowed
+Content-Length: 322
+Allow: POST,OPTIONS,HEAD,GET
+Content-Type: text/html; charset=iso-8859-1
+Date: Thu, 23 Apr 2020 07:53:52 GMT
+Server: Apache/2.4.34 (Ubuntu)
+
+&lt;!DOCTYPE HTML PUBLIC &#34;-//IETF//DTD HTML 2.0//EN&#34;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;405 Method Not Allowed&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Method Not Allowed&lt;/h1&gt;
+&lt;p&gt;The requested method DELETE is not allowed for the URL /v2/store/order/$orderId.&lt;/p&gt;
+&lt;hr&gt;
+&lt;address&gt;Apache/2.4.34 (Ubuntu) Server at 127.0.0.1 Port 80&lt;/address&gt;
+&lt;/body&gt;&lt;/html&gt;
+</code></pre><pre class=prettyJson><code></code></pre><button type=button class=prettyJSONButton>Format JSON</button></div></div></div></ul></ul><li class=case data-time=0.001636515 data-order=6 data-result=FAIL><ul class=reportCaseListView><li class=reportCaseView><div class=reportCaseHeader><div class=caseName><h3>user CRUD urlencoded</h3><span>Case name</span></div><div class=caseTime><h3>1.636515ms</h3><span>Time to execute</span></div><div class="caseStatus FAIL"><p>FAIL</div></div><ul class=reportStepList style=display:none><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Variables</div></div><div class=stepDetailed style=display:none><div class=stepDetailedLeftSide><div class="globalVarsTile stepDetailsTile active"><p>Global vars</div><div class="caseVarsTile stepDetailsTile"><p>Case vars</div><div class="listVarsTile stepDetailsTile"><p>List vars</div></div><div class=stepDetailedRightSide style=max-height:18em><ul class=globalVarsCollectionView><li class=assertItem><p>$baseURL: http://127.0.0.1<li class=assertItem><p>$SYS_CLI_GNOME_TERMINAL_SCREEN: /org/gnome/Terminal/screen/a8916d88_de23_4892_9d9a_f811c620af59<li class=assertItem><p>$SYS_CLI_GPG_AGENT_INFO: /run/user/1000/gnupg/S.gpg-agent:0:1<li class=assertItem><p>$SYS_CLI_GTK_IM_MODULE: ibus<li class=assertItem><p>$SYS_CLI_USERNAME: wafa<li class=assertItem><p>$SYS_CLI_WINDOWPATH: 2<li class=assertItem><p>$SYS_CLI_LANG: en_US.UTF-8<li class=assertItem><p>$SYS_CLI_LC_MONETARY: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_TERM_PROGRAM_VERSION: 1.44.2<li class=assertItem><p>$SYS_CLI_XAUTHORITY: /run/user/1000/gdm/Xauthority<li class=assertItem><p>$SYS_CLI_XDG_CURRENT_DESKTOP: Unity<li class=assertItem><p>$SYS_CLI_GDMSESSION: ubuntu<li class=assertItem><p>$SYS_CLI_GNOME_SHELL_SESSION_MODE: ubuntu<li class=assertItem><p>$SYS_CLI_TERM: xterm-256color<li class=assertItem><p>$SYS_CLI_XDG_VTNR: 2<li class=assertItem><p>$SYS_CLI_DESKTOP_SESSION: ubuntu<li class=assertItem><p>$SYS_CLI_IM_CONFIG_PHASE: 2<li class=assertItem><p>$SYS_CLI_XDG_SEAT: seat0<li class=assertItem><p>$SYS_CLI_LC_TIME: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_MANDATORY_PATH: /usr/share/gconf/ubuntu.mandatory.path<li class=assertItem><p>$SYS_CLI_OLDPWD: /home/wafa/Desktop/smoke test<li class=assertItem><p>$SYS_CLI_XDG_CONFIG_DIRS: /etc/xdg/xdg-ubuntu:/etc/xdg<li class=assertItem><p>$SYS_CLI_XDG_RUNTIME_DIR: /run/user/1000<li class=assertItem><p>$SYS_CLI_GNOME_DESKTOP_SESSION_ID: this-is-deprecated<li class=assertItem><p>$SYS_CLI_LC_TELEPHONE: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_LESSOPEN: | /usr/bin/lesspipe %s<li class=assertItem><p>$SYS_CLI_LOGNAME: wafa<li class=assertItem><p>$SYS_CLI_QT_IM_MODULE: ibus<li class=assertItem><p>$SYS_CLI_SHLVL: 3<li class=assertItem><p>$SYS_CLI_VTE_VERSION: 5401<li class=assertItem><p>$SYS_CLI_XMODIFIERS: @im=ibus<li class=assertItem><p>$SYS_CLI_APIMATION_HOME: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_CLI_CHROME_DESKTOP: code-url-handler.desktop<li class=assertItem><p>$SYS_CLI_CLUTTER_IM_MODULE: xim<li class=assertItem><p>$SYS_CLI_DBUS_SESSION_BUS_ADDRESS: unix:path=/run/user/1000/bus<li class=assertItem><p>$SYS_CLI_LS_COLORS: rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:<li class=assertItem><p>$SYS_CLI_QT_ACCESSIBILITY: 1<li class=assertItem><p>$SYS_CLI_SHELL: /bin/bash<li class=assertItem><p>$SYS_CLI_SSH_AUTH_SOCK: /run/user/1000/keyring/ssh<li class=assertItem><p>$SYS_CLI_APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: true<li class=assertItem><p>$SYS_CLI_GJS_DEBUG_OUTPUT: stderr<li class=assertItem><p>$SYS_CLI_LC_PAPER: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_LESSCLOSE: /usr/bin/lesspipe %s %s<li class=assertItem><p>$SYS_CLI_NO_AT_BRIDGE: 1<li class=assertItem><p>$SYS_CLI_USER: wafa<li class=assertItem><p>$SYS_CLI_COLORTERM: truecolor<li class=assertItem><p>$SYS_CLI_PWD: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_CLI_SSH_AGENT_PID: 3192<li class=assertItem><p>$SYS_CLI__: /home/wafa/Downloads/apimation_0.54.7_linux_amd64/apimation<li class=assertItem><p>$SYS_CLI_XDG_MENU_PREFIX: gnome-<li class=assertItem><p>$SYS_CLI_XDG_SESSION_DESKTOP: ubuntu<li class=assertItem><p>$SYS_CLI_DEFAULTS_PATH: /usr/share/gconf/ubuntu.default.path<li class=assertItem><p>$SYS_CLI_LC_NAME: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_QT4_IM_MODULE: xim<li class=assertItem><p>$SYS_CLI_DISPLAY: :0<li class=assertItem><p>$SYS_CLI_LC_IDENTIFICATION: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_GNOME_TERMINAL_SERVICE: :1.512<li class=assertItem><p>$SYS_CLI_PATH: /home/wafa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin<li class=assertItem><p>$SYS_CLI_XDG_SESSION_ID: 3<li class=assertItem><p>$SYS_CLI_GJS_DEBUG_TOPICS: JS ERROR;JS LOG<li class=assertItem><p>$SYS_CLI_LC_MEASUREMENT: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_LC_NUMERIC: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_XDG_DATA_DIRS: /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop<li class=assertItem><p>$SYS_CLI_GTK_MODULES: gail:atk-bridge<li class=assertItem><p>$SYS_CLI_HOME: /home/wafa<li class=assertItem><p>$SYS_CLI_SESSION_MANAGER: local/wafa:@/tmp/.ICE-unix/3062,unix/wafa:/tmp/.ICE-unix/3062<li class=assertItem><p>$SYS_CLI_LC_ADDRESS: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_TERM_PROGRAM: vscode<li class=assertItem><p>$SYS_CLI_XDG_SESSION_TYPE: x11<li class=assertItem><p>$SYS_TEW_USER: wafa<li class=assertItem><p>$SYS_TEW_DESKTOP_SESSION: ubuntu<li class=assertItem><p>$SYS_TEW_WINDOWPATH: 2<li class=assertItem><p>$SYS_TEW_LOGNAME: wafa<li class=assertItem><p>$SYS_TEW_CHROME_DESKTOP: code-url-handler.desktop<li class=assertItem><p>$SYS_TEW_XDG_VTNR: 2<li class=assertItem><p>$SYS_TEW_APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: true<li class=assertItem><p>$SYS_TEW_DEFAULTS_PATH: /usr/share/gconf/ubuntu.default.path<li class=assertItem><p>$SYS_TEW_QT_ACCESSIBILITY: 1<li class=assertItem><p>$SYS_TEW_XDG_CURRENT_DESKTOP: Unity<li class=assertItem><p>$SYS_TEW_LESSOPEN: | /usr/bin/lesspipe %s<li class=assertItem><p>$SYS_TEW_LC_TIME: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_CLUTTER_IM_MODULE: xim<li class=assertItem><p>$SYS_TEW_COLORTERM: truecolor<li class=assertItem><p>$SYS_TEW_PWD: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_TEW_SESSION_MANAGER: local/wafa:@/tmp/.ICE-unix/3062,unix/wafa:/tmp/.ICE-unix/3062<li class=assertItem><p>$SYS_TEW_XDG_MENU_PREFIX: gnome-<li class=assertItem><p>$SYS_TEW_NO_AT_BRIDGE: 1<li class=assertItem><p>$SYS_TEW_QT_IM_MODULE: ibus<li class=assertItem><p>$SYS_TEW_XMODIFIERS: @im<li class=assertItem><p>$SYS_TEW_GPG_AGENT_INFO: /run/user/1000/gnupg/S.gpg-agent:0:1<li class=assertItem><p>$SYS_TEW_SHLVL: 3<li class=assertItem><p>$SYS_TEW__: /home/wafa/Downloads/apimation_0.54.7_linux_amd64/apimation<li class=assertItem><p>$SYS_TEW_LC_PAPER: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_GNOME_SHELL_SESSION_MODE: ubuntu<li class=assertItem><p>$SYS_TEW_PATH: /home/wafa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin<li class=assertItem><p>$SYS_TEW_LC_MONETARY: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_VTE_VERSION: 5401<li class=assertItem><p>$SYS_TEW_LC_NAME: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_XDG_RUNTIME_DIR: /run/user/1000<li class=assertItem><p>$SYS_TEW_LS_COLORS: rs<li class=assertItem><p>$SYS_TEW_USERNAME: wafa<li class=assertItem><p>$SYS_TEW_XDG_DATA_DIRS: /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop<li class=assertItem><p>$SYS_TEW_GJS_DEBUG_OUTPUT: stderr<li class=assertItem><p>$SYS_TEW_HOME: /home/wafa<li class=assertItem><p>$SYS_TEW_TERM_PROGRAM: vscode<li class=assertItem><p>$SYS_TEW_LC_TELEPHONE: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_GJS_DEBUG_TOPICS: JS ERROR;JS LOG<li class=assertItem><p>$SYS_TEW_GTK_IM_MODULE: ibus<li class=assertItem><p>$SYS_TEW_LANG: en_US.UTF-8<li class=assertItem><p>$SYS_TEW_SSH_AUTH_SOCK: /run/user/1000/keyring/ssh<li class=assertItem><p>$SYS_TEW_MANDATORY_PATH: /usr/share/gconf/ubuntu.mandatory.path<li class=assertItem><p>$SYS_TEW_TERM_PROGRAM_VERSION: 1.44.2<li class=assertItem><p>$SYS_TEW_IM_CONFIG_PHASE: 2<li class=assertItem><p>$SYS_TEW_GNOME_TERMINAL_SERVICE: :1.512<li class=assertItem><p>$SYS_TEW_XDG_SEAT: seat0<li class=assertItem><p>$SYS_TEW_XAUTHORITY: /run/user/1000/gdm/Xauthority<li class=assertItem><p>$SYS_TEW_APIMATION_HOME: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_TEW_LC_ADDRESS: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_GTK_MODULES: gail:atk-bridge<li class=assertItem><p>$SYS_TEW_LC_IDENTIFICATION: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_TERM: xterm-256color<li class=assertItem><p>$SYS_TEW_GNOME_DESKTOP_SESSION_ID: this-is-deprecated<li class=assertItem><p>$SYS_TEW_XDG_SESSION_TYPE: x11<li class=assertItem><p>$SYS_TEW_LC_NUMERIC: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_GDMSESSION: ubuntu<li class=assertItem><p>$SYS_TEW_DBUS_SESSION_BUS_ADDRESS: unix:path<li class=assertItem><p>$SYS_TEW_LESSCLOSE: /usr/bin/lesspipe %s %s<li class=assertItem><p>$SYS_TEW_SSH_AGENT_PID: 3192<li class=assertItem><p>$SYS_TEW_XDG_SESSION_DESKTOP: ubuntu<li class=assertItem><p>$SYS_TEW_SHELL: /bin/bash<li class=assertItem><p>$SYS_TEW_LC_MEASUREMENT: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_DISPLAY: :0<li class=assertItem><p>$SYS_TEW_QT4_IM_MODULE: xim<li class=assertItem><p>$SYS_TEW_GNOME_TERMINAL_SCREEN: /org/gnome/Terminal/screen/a8916d88_de23_4892_9d9a_f811c620af59<li class=assertItem><p>$SYS_TEW_XDG_CONFIG_DIRS: /etc/xdg/xdg-ubuntu:/etc/xdg<li class=assertItem><p>$SYS_TEW_OLDPWD: /home/wafa/Desktop/smoke test<li class=assertItem><p>$SYS_TEW_XDG_SESSION_ID: 3</ul><ul class=caseVarsCollectionView></ul><ul class=listVarsCollectionView><li class=assertItem><p>$email:
+$emailList =
+Could not find any submatch<li class=assertItem><p>$firstName:
+$firstNameList =
+Could not find any submatch<li class=assertItem><p>$id:
+$idList =
+Could not find any submatch<li class=assertItem><p>$lastName:
+$lastNameList =
+Could not find any submatch<li class=assertItem><p>$password:
+$passwordList =
+Could not find any submatch<li class=assertItem><p>$phone:
+$phoneList =
+Could not find any submatch<li class=assertItem><p>$userStatus:
+$userStatusList =
+Could not find any submatch<li class=assertItem><p>$username:
+$usernameList =
+Could not find any submatch</ul></div></div><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Step 1 : getUserByName urlencoded</div><div class="stepStatus FAIL"><p>FAIL</div><div class=reportStepRtt>528.698µs</div></div><div class=stepDetailed style=display:none;position:relative><div class=stepDetailedLeftSide><div class="assertsTile stepDetailsTile active"><p>Asserts</div><div class="grepsTile stepDetailsTile"><p>Greps</div><div class="requestDataTile stepDetailsTile"><p>Request data</div><div class="responseDataTile stepDetailsTile"><p>Response data</div></div><div class=stepDetailedRightSide><ul class=assertCollectionView><li class=assertItem><p>Extracted value '404 Not Found' from extract type 'status' regex does NOT match expected value '200'<div class=FAIL></div></ul><ul class=grepCollectionView><li class=assertItem><p>$email: Could not find any submatch<li class=assertItem><p>$firstName: Could not find any submatch<li class=assertItem><p>$id: Could not find any submatch<li class=assertItem><p>$lastName: Could not find any submatch<li class=assertItem><p>$password: Could not find any submatch<li class=assertItem><p>$phone: Could not find any submatch<li class=assertItem><p>$userStatus: Could not find any submatch<li class=assertItem><p>$username: Could not find any submatch</ul><div class=requestDataSection><pre><code>GET /v2/user/$username HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Go-http-client/1.1
+Accept-Encoding: gzip
+
+</code></pre><ul></ul></div><div class=responseDataSection><pre class=rawData><code>HTTP/1.1 404 Not Found
+Content-Length: 290
+Content-Type: text/html; charset=iso-8859-1
+Date: Thu, 23 Apr 2020 07:53:53 GMT
+Server: Apache/2.4.34 (Ubuntu)
+
+&lt;!DOCTYPE HTML PUBLIC &#34;-//IETF//DTD HTML 2.0//EN&#34;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL /v2/user/$username was not found on this server.&lt;/p&gt;
+&lt;hr&gt;
+&lt;address&gt;Apache/2.4.34 (Ubuntu) Server at 127.0.0.1 Port 80&lt;/address&gt;
+&lt;/body&gt;&lt;/html&gt;
+</code></pre><pre class=prettyJson><code></code></pre><button type=button class=prettyJSONButton>Format JSON</button></div></div></div><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Step 2 : logoutUser urlencoded</div><div class="stepStatus PASS"><p>PASS</div><div class=reportStepRtt>170.866µs</div></div><div class=stepDetailed style=display:none;position:relative><div class=stepDetailedLeftSide><div class="assertsTile stepDetailsTile active"><p>Asserts</div><div class="grepsTile stepDetailsTile"><p>Greps</div><div class="requestDataTile stepDetailsTile"><p>Request data</div><div class="responseDataTile stepDetailsTile"><p>Response data</div></div><div class=stepDetailedRightSide><ul class=assertCollectionView></ul><ul class=grepCollectionView></ul><div class=requestDataSection><pre><code>GET /v2/user/logout HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Go-http-client/1.1
+Accept-Encoding: gzip
+
+</code></pre><ul></ul></div><div class=responseDataSection><pre class=rawData><code>HTTP/1.1 404 Not Found
+Content-Length: 287
+Content-Type: text/html; charset=iso-8859-1
+Date: Thu, 23 Apr 2020 07:53:53 GMT
+Server: Apache/2.4.34 (Ubuntu)
+
+&lt;!DOCTYPE HTML PUBLIC &#34;-//IETF//DTD HTML 2.0//EN&#34;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL /v2/user/logout was not found on this server.&lt;/p&gt;
+&lt;hr&gt;
+&lt;address&gt;Apache/2.4.34 (Ubuntu) Server at 127.0.0.1 Port 80&lt;/address&gt;
+&lt;/body&gt;&lt;/html&gt;
+</code></pre><pre class=prettyJson><code></code></pre><button type=button class=prettyJSONButton>Format JSON</button></div></div></div><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Step 3 : deleteUser urlencoded</div><div class="stepStatus PASS"><p>PASS</div><div class=reportStepRtt>172.094µs</div></div><div class=stepDetailed style=display:none;position:relative><div class=stepDetailedLeftSide><div class="assertsTile stepDetailsTile active"><p>Asserts</div><div class="grepsTile stepDetailsTile"><p>Greps</div><div class="requestDataTile stepDetailsTile"><p>Request data</div><div class="responseDataTile stepDetailsTile"><p>Response data</div></div><div class=stepDetailedRightSide><ul class=assertCollectionView></ul><ul class=grepCollectionView></ul><div class=requestDataSection><pre><code>DELETE /v2/user/Could%20not%20find%20any%20submatch HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Go-http-client/1.1
+Accept-Encoding: gzip
+
+</code></pre><ul></ul></div><div class=responseDataSection><pre class=rawData><code>HTTP/1.1 405 Method Not Allowed
+Content-Length: 334
+Allow: POST,OPTIONS,HEAD,GET
+Content-Type: text/html; charset=iso-8859-1
+Date: Thu, 23 Apr 2020 07:53:53 GMT
+Server: Apache/2.4.34 (Ubuntu)
+
+&lt;!DOCTYPE HTML PUBLIC &#34;-//IETF//DTD HTML 2.0//EN&#34;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;405 Method Not Allowed&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Method Not Allowed&lt;/h1&gt;
+&lt;p&gt;The requested method DELETE is not allowed for the URL /v2/user/Could not find any submatch.&lt;/p&gt;
+&lt;hr&gt;
+&lt;address&gt;Apache/2.4.34 (Ubuntu) Server at 127.0.0.1 Port 80&lt;/address&gt;
+&lt;/body&gt;&lt;/html&gt;
+</code></pre><pre class=prettyJson><code></code></pre><button type=button class=prettyJSONButton>Format JSON</button></div></div></div></ul></ul><li class=case data-time=0.00127266 data-order=7 data-result=FAIL><ul class=reportCaseListView><li class=reportCaseView><div class=reportCaseHeader><div class=caseName><h3>pet CRUD form-data</h3><span>Case name</span></div><div class=caseTime><h3>1.27266ms</h3><span>Time to execute</span></div><div class="caseStatus FAIL"><p>FAIL</div></div><ul class=reportStepList style=display:none><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Variables</div></div><div class=stepDetailed style=display:none><div class=stepDetailedLeftSide><div class="globalVarsTile stepDetailsTile active"><p>Global vars</div><div class="caseVarsTile stepDetailsTile"><p>Case vars</div><div class="listVarsTile stepDetailsTile"><p>List vars</div></div><div class=stepDetailedRightSide style=max-height:18em><ul class=globalVarsCollectionView><li class=assertItem><p>$baseURL: http://127.0.0.1<li class=assertItem><p>$SYS_CLI_USERNAME: wafa<li class=assertItem><p>$SYS_CLI_WINDOWPATH: 2<li class=assertItem><p>$SYS_CLI_GNOME_TERMINAL_SCREEN: /org/gnome/Terminal/screen/a8916d88_de23_4892_9d9a_f811c620af59<li class=assertItem><p>$SYS_CLI_GPG_AGENT_INFO: /run/user/1000/gnupg/S.gpg-agent:0:1<li class=assertItem><p>$SYS_CLI_GTK_IM_MODULE: ibus<li class=assertItem><p>$SYS_CLI_XAUTHORITY: /run/user/1000/gdm/Xauthority<li class=assertItem><p>$SYS_CLI_XDG_CURRENT_DESKTOP: Unity<li class=assertItem><p>$SYS_CLI_LANG: en_US.UTF-8<li class=assertItem><p>$SYS_CLI_LC_MONETARY: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_TERM_PROGRAM_VERSION: 1.44.2<li class=assertItem><p>$SYS_CLI_XDG_VTNR: 2<li class=assertItem><p>$SYS_CLI_GDMSESSION: ubuntu<li class=assertItem><p>$SYS_CLI_GNOME_SHELL_SESSION_MODE: ubuntu<li class=assertItem><p>$SYS_CLI_TERM: xterm-256color<li class=assertItem><p>$SYS_CLI_DESKTOP_SESSION: ubuntu<li class=assertItem><p>$SYS_CLI_IM_CONFIG_PHASE: 2<li class=assertItem><p>$SYS_CLI_XDG_CONFIG_DIRS: /etc/xdg/xdg-ubuntu:/etc/xdg<li class=assertItem><p>$SYS_CLI_XDG_RUNTIME_DIR: /run/user/1000<li class=assertItem><p>$SYS_CLI_XDG_SEAT: seat0<li class=assertItem><p>$SYS_CLI_LC_TIME: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_MANDATORY_PATH: /usr/share/gconf/ubuntu.mandatory.path<li class=assertItem><p>$SYS_CLI_OLDPWD: /home/wafa/Desktop/smoke test<li class=assertItem><p>$SYS_CLI_LOGNAME: wafa<li class=assertItem><p>$SYS_CLI_QT_IM_MODULE: ibus<li class=assertItem><p>$SYS_CLI_GNOME_DESKTOP_SESSION_ID: this-is-deprecated<li class=assertItem><p>$SYS_CLI_LC_TELEPHONE: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_LESSOPEN: | /usr/bin/lesspipe %s<li class=assertItem><p>$SYS_CLI_DBUS_SESSION_BUS_ADDRESS: unix:path=/run/user/1000/bus<li class=assertItem><p>$SYS_CLI_LS_COLORS: rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:<li class=assertItem><p>$SYS_CLI_SHLVL: 3<li class=assertItem><p>$SYS_CLI_VTE_VERSION: 5401<li class=assertItem><p>$SYS_CLI_XMODIFIERS: @im=ibus<li class=assertItem><p>$SYS_CLI_APIMATION_HOME: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_CLI_CHROME_DESKTOP: code-url-handler.desktop<li class=assertItem><p>$SYS_CLI_CLUTTER_IM_MODULE: xim<li class=assertItem><p>$SYS_CLI_LESSCLOSE: /usr/bin/lesspipe %s %s<li class=assertItem><p>$SYS_CLI_NO_AT_BRIDGE: 1<li class=assertItem><p>$SYS_CLI_QT_ACCESSIBILITY: 1<li class=assertItem><p>$SYS_CLI_SHELL: /bin/bash<li class=assertItem><p>$SYS_CLI_SSH_AUTH_SOCK: /run/user/1000/keyring/ssh<li class=assertItem><p>$SYS_CLI_APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: true<li class=assertItem><p>$SYS_CLI_GJS_DEBUG_OUTPUT: stderr<li class=assertItem><p>$SYS_CLI_LC_PAPER: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_USER: wafa<li class=assertItem><p>$SYS_CLI__: /home/wafa/Downloads/apimation_0.54.7_linux_amd64/apimation<li class=assertItem><p>$SYS_CLI_COLORTERM: truecolor<li class=assertItem><p>$SYS_CLI_PWD: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_CLI_SSH_AGENT_PID: 3192<li class=assertItem><p>$SYS_CLI_XDG_MENU_PREFIX: gnome-<li class=assertItem><p>$SYS_CLI_XDG_SESSION_DESKTOP: ubuntu<li class=assertItem><p>$SYS_CLI_DEFAULTS_PATH: /usr/share/gconf/ubuntu.default.path<li class=assertItem><p>$SYS_CLI_LC_NAME: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_QT4_IM_MODULE: xim<li class=assertItem><p>$SYS_CLI_DISPLAY: :0<li class=assertItem><p>$SYS_CLI_LC_IDENTIFICATION: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_GNOME_TERMINAL_SERVICE: :1.512<li class=assertItem><p>$SYS_CLI_PATH: /home/wafa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin<li class=assertItem><p>$SYS_CLI_XDG_SESSION_ID: 3<li class=assertItem><p>$SYS_CLI_XDG_DATA_DIRS: /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop<li class=assertItem><p>$SYS_CLI_GJS_DEBUG_TOPICS: JS ERROR;JS LOG<li class=assertItem><p>$SYS_CLI_LC_MEASUREMENT: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_LC_NUMERIC: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_GTK_MODULES: gail:atk-bridge<li class=assertItem><p>$SYS_CLI_HOME: /home/wafa<li class=assertItem><p>$SYS_CLI_SESSION_MANAGER: local/wafa:@/tmp/.ICE-unix/3062,unix/wafa:/tmp/.ICE-unix/3062<li class=assertItem><p>$SYS_CLI_LC_ADDRESS: ar_SA.UTF-8<li class=assertItem><p>$SYS_CLI_TERM_PROGRAM: vscode<li class=assertItem><p>$SYS_CLI_XDG_SESSION_TYPE: x11<li class=assertItem><p>$SYS_TEW_LC_PAPER: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_LC_MONETARY: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_OLDPWD: /home/wafa/Desktop/smoke test<li class=assertItem><p>$SYS_TEW_COLORTERM: truecolor<li class=assertItem><p>$SYS_TEW_SSH_AUTH_SOCK: /run/user/1000/keyring/ssh<li class=assertItem><p>$SYS_TEW_DESKTOP_SESSION: ubuntu<li class=assertItem><p>$SYS_TEW_GNOME_TERMINAL_SERVICE: :1.512<li class=assertItem><p>$SYS_TEW_LESSOPEN: | /usr/bin/lesspipe %s<li class=assertItem><p>$SYS_TEW_APIMATION_HOME: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_TEW_APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: true<li class=assertItem><p>$SYS_TEW_SSH_AGENT_PID: 3192<li class=assertItem><p>$SYS_TEW_VTE_VERSION: 5401<li class=assertItem><p>$SYS_TEW_QT_IM_MODULE: ibus<li class=assertItem><p>$SYS_TEW_IM_CONFIG_PHASE: 2<li class=assertItem><p>$SYS_TEW_SHLVL: 3<li class=assertItem><p>$SYS_TEW_LC_IDENTIFICATION: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_QT4_IM_MODULE: xim<li class=assertItem><p>$SYS_TEW_DEFAULTS_PATH: /usr/share/gconf/ubuntu.default.path<li class=assertItem><p>$SYS_TEW_DBUS_SESSION_BUS_ADDRESS: unix:path<li class=assertItem><p>$SYS_TEW_CHROME_DESKTOP: code-url-handler.desktop<li class=assertItem><p>$SYS_TEW_GTK_MODULES: gail:atk-bridge<li class=assertItem><p>$SYS_TEW_SESSION_MANAGER: local/wafa:@/tmp/.ICE-unix/3062,unix/wafa:/tmp/.ICE-unix/3062<li class=assertItem><p>$SYS_TEW_USERNAME: wafa<li class=assertItem><p>$SYS_TEW_PWD: /home/wafa/Desktop/smoke test/PetstoreAPISmokeTest<li class=assertItem><p>$SYS_TEW_TERM: xterm-256color<li class=assertItem><p>$SYS_TEW_GDMSESSION: ubuntu<li class=assertItem><p>$SYS_TEW_CLUTTER_IM_MODULE: xim<li class=assertItem><p>$SYS_TEW_HOME: /home/wafa<li class=assertItem><p>$SYS_TEW_GNOME_DESKTOP_SESSION_ID: this-is-deprecated<li class=assertItem><p>$SYS_TEW_LOGNAME: wafa<li class=assertItem><p>$SYS_TEW_XDG_RUNTIME_DIR: /run/user/1000<li class=assertItem><p>$SYS_TEW_GNOME_SHELL_SESSION_MODE: ubuntu<li class=assertItem><p>$SYS_TEW_XDG_VTNR: 2<li class=assertItem><p>$SYS_TEW_XDG_SESSION_TYPE: x11<li class=assertItem><p>$SYS_TEW_XDG_SEAT: seat0<li class=assertItem><p>$SYS_TEW_DISPLAY: :0<li class=assertItem><p>$SYS_TEW_XDG_SESSION_ID: 3<li class=assertItem><p>$SYS_TEW_USER: wafa<li class=assertItem><p>$SYS_TEW_TERM_PROGRAM: vscode<li class=assertItem><p>$SYS_TEW_TERM_PROGRAM_VERSION: 1.44.2<li class=assertItem><p>$SYS_TEW_LS_COLORS: rs<li class=assertItem><p>$SYS_TEW_MANDATORY_PATH: /usr/share/gconf/ubuntu.mandatory.path<li class=assertItem><p>$SYS_TEW_LC_ADDRESS: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_LC_TELEPHONE: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_GPG_AGENT_INFO: /run/user/1000/gnupg/S.gpg-agent:0:1<li class=assertItem><p>$SYS_TEW_XDG_SESSION_DESKTOP: ubuntu<li class=assertItem><p>$SYS_TEW_GJS_DEBUG_OUTPUT: stderr<li class=assertItem><p>$SYS_TEW_XAUTHORITY: /run/user/1000/gdm/Xauthority<li class=assertItem><p>$SYS_TEW_XDG_CONFIG_DIRS: /etc/xdg/xdg-ubuntu:/etc/xdg<li class=assertItem><p>$SYS_TEW_LC_TIME: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_NO_AT_BRIDGE: 1<li class=assertItem><p>$SYS_TEW_QT_ACCESSIBILITY: 1<li class=assertItem><p>$SYS_TEW_XDG_DATA_DIRS: /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop<li class=assertItem><p>$SYS_TEW_LC_NUMERIC: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_WINDOWPATH: 2<li class=assertItem><p>$SYS_TEW_LC_MEASUREMENT: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_XDG_CURRENT_DESKTOP: Unity<li class=assertItem><p>$SYS_TEW_PATH: /home/wafa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin<li class=assertItem><p>$SYS_TEW_LESSCLOSE: /usr/bin/lesspipe %s %s<li class=assertItem><p>$SYS_TEW__: /home/wafa/Downloads/apimation_0.54.7_linux_amd64/apimation<li class=assertItem><p>$SYS_TEW_GTK_IM_MODULE: ibus<li class=assertItem><p>$SYS_TEW_XDG_MENU_PREFIX: gnome-<li class=assertItem><p>$SYS_TEW_LANG: en_US.UTF-8<li class=assertItem><p>$SYS_TEW_LC_NAME: ar_SA.UTF-8<li class=assertItem><p>$SYS_TEW_GNOME_TERMINAL_SCREEN: /org/gnome/Terminal/screen/a8916d88_de23_4892_9d9a_f811c620af59<li class=assertItem><p>$SYS_TEW_SHELL: /bin/bash<li class=assertItem><p>$SYS_TEW_XMODIFIERS: @im<li class=assertItem><p>$SYS_TEW_GJS_DEBUG_TOPICS: JS ERROR;JS LOG</ul><ul class=caseVarsCollectionView></ul><ul class=listVarsCollectionView><li class=assertItem><p>$code:
+$codeList =
+Could not find any submatch<li class=assertItem><p>$message:
+$messageList =
+Could not find any submatch<li class=assertItem><p>$type:
+$typeList =
+Could not find any submatch</ul></div></div><li class=reportStep><div class=reportStepHeader><div class=reportStepOrder></div><div class=reportStepName>Step 1 : uploadFile form-data</div><div class="stepStatus FAIL"><p>FAIL</div><div class=reportStepRtt>690.411µs</div></div><div class=stepDetailed style=display:none;position:relative><div class=stepDetailedLeftSide><div class="assertsTile stepDetailsTile active"><p>Asserts</div><div class="grepsTile stepDetailsTile"><p>Greps</div><div class="requestDataTile stepDetailsTile"><p>Request data</div><div class="responseDataTile stepDetailsTile"><p>Response data</div></div><div class=stepDetailedRightSide><ul class=assertCollectionView><li class=assertItem><p>Extracted value '404 Not Found' from extract type 'status' regex does NOT match expected value '200'<div class=FAIL></div></ul><ul class=grepCollectionView><li class=assertItem><p>$code: Could not find any submatch<li class=assertItem><p>$message: Could not find any submatch<li class=assertItem><p>$type: Could not find any submatch</ul><div class=requestDataSection><pre><code>POST /v2/pet/$petId/uploadImage HTTP/1.1
+Host: 127.0.0.1
+User-Agent: Go-http-client/1.1
+Content-Length: 0
+Accept-Encoding: gzip
+
+</code></pre><ul></ul></div><div class=responseDataSection><pre class=rawData><code>HTTP/1.1 404 Not Found
+Content-Length: 298
+Content-Type: text/html; charset=iso-8859-1
+Date: Thu, 23 Apr 2020 07:53:53 GMT
+Server: Apache/2.4.34 (Ubuntu)
+
+&lt;!DOCTYPE HTML PUBLIC &#34;-//IETF//DTD HTML 2.0//EN&#34;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL /v2/pet/$petId/uploadImage was not found on this server.&lt;/p&gt;
+&lt;hr&gt;
+&lt;address&gt;Apache/2.4.34 (Ubuntu) Server at 127.0.0.1 Port 80&lt;/address&gt;
+&lt;/body&gt;&lt;/html&gt;
+</code></pre><pre class=prettyJson><code></code></pre><button type=button class=prettyJSONButton>Format JSON</button></div></div></div></ul></ul></ul></div><footer><div class=versions>CLI 0.54.7;
+TEW 0.27.0</div></footer>
