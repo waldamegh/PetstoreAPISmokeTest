@@ -1,0 +1,14 @@
+test: step
+name: findPetsByStatus urlencoded
+collection:
+  name: Swagger Petstore
+method: GET
+url: $baseURL/v2/pet/findByStatus
+queryParams:
+  status:
+  - $status
+asserts:
+- type: status
+  expected: "200"
+  operator: regex
+requestTimeout: 0

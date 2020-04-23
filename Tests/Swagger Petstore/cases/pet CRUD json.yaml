@@ -1,0 +1,14 @@
+test: case
+name: pet CRUD json
+description: <insert description of test case>
+casedetails:
+  vars:
+    $id: $genInteger(56,824)
+    $name: $genString(8)
+    $status: $genString(8)
+  defaultCollection: Swagger Petstore
+  steps:
+  - name: addPet json
+    requestTimeout: 0
+  - name: updatePet json
+    requestTimeout: 0

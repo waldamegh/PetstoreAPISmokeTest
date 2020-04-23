@@ -1,0 +1,9 @@
+test: step
+name: createUsersWithArrayInput json
+collection:
+  name: Swagger Petstore
+method: POST
+url: $baseURL/v2/user/createWithArray
+type: raw
+body: '{}'
+requestTimeout: 0

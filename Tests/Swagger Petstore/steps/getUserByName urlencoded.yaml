@@ -1,0 +1,44 @@
+test: step
+name: getUserByName urlencoded
+collection:
+  name: Swagger Petstore
+method: GET
+url: $baseURL/v2/user/$username
+greps:
+- varname: $email
+  type: text
+  expression: email
+  listname: $emailList
+- varname: $firstName
+  type: text
+  expression: firstName
+  listname: $firstNameList
+- varname: $id
+  type: text
+  expression: id
+  listname: $idList
+- varname: $lastName
+  type: text
+  expression: lastName
+  listname: $lastNameList
+- varname: $password
+  type: text
+  expression: password
+  listname: $passwordList
+- varname: $phone
+  type: text
+  expression: phone
+  listname: $phoneList
+- varname: $userStatus
+  type: text
+  expression: userStatus
+  listname: $userStatusList
+- varname: $username
+  type: text
+  expression: username
+  listname: $usernameList
+asserts:
+- type: status
+  expected: "200"
+  operator: regex
+requestTimeout: 0

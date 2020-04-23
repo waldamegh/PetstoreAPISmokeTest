@@ -1,0 +1,16 @@
+test: step
+name: loginUser urlencoded
+collection:
+  name: Swagger Petstore
+method: GET
+url: $baseURL/v2/user/login
+queryParams:
+  password:
+  - $password
+  username:
+  - $username
+asserts:
+- type: status
+  expected: "200"
+  operator: regex
+requestTimeout: 0

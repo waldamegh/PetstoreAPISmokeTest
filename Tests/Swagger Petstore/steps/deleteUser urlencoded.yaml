@@ -1,0 +1,7 @@
+test: step
+name: deleteUser urlencoded
+collection:
+  name: Swagger Petstore
+method: DELETE
+url: $baseURL/v2/user/$username
+requestTimeout: 0

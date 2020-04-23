@@ -1,0 +1,19 @@
+test: step
+name: updateUser json
+collection:
+  name: Swagger Petstore
+method: PUT
+url: $baseURL/v2/user/$username
+type: raw
+body: |-
+  {
+       "email": "$email",
+       "firstName": "$firstName",
+       "id": "$id",
+       "lastName": "$lastName",
+       "password": "$password",
+       "phone": "$phone",
+       "userStatus": "$userStatus",
+       "username": "$username"
+   }
+requestTimeout: 0

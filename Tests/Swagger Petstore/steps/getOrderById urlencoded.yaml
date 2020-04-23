@@ -1,0 +1,36 @@
+test: step
+name: getOrderById urlencoded
+collection:
+  name: Swagger Petstore
+method: GET
+url: $baseURL/v2/store/order/$orderId
+greps:
+- varname: $complete
+  type: text
+  expression: complete
+  listname: $completeList
+- varname: $id
+  type: text
+  expression: id
+  listname: $idList
+- varname: $petId
+  type: text
+  expression: petId
+  listname: $petIdList
+- varname: $quantity
+  type: text
+  expression: quantity
+  listname: $quantityList
+- varname: $shipDate
+  type: text
+  expression: shipDate
+  listname: $shipDateList
+- varname: $status
+  type: text
+  expression: status
+  listname: $statusList
+asserts:
+- type: status
+  expected: "200"
+  operator: regex
+requestTimeout: 0

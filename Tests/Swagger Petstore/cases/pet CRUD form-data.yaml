@@ -1,0 +1,8 @@
+test: case
+name: pet CRUD form-data
+description: <insert description of test case>
+casedetails:
+  defaultCollection: Swagger Petstore
+  steps:
+  - name: uploadFile form-data
+    requestTimeout: 0

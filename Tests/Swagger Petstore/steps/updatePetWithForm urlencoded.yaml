@@ -1,0 +1,7 @@
+test: step
+name: updatePetWithForm urlencoded
+collection:
+  name: Swagger Petstore
+method: POST
+url: $baseURL/v2/pet/$petId
+requestTimeout: 0

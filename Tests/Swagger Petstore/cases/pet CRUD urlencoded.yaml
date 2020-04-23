@@ -1,0 +1,16 @@
+test: case
+name: pet CRUD urlencoded
+description: <insert description of test case>
+casedetails:
+  defaultCollection: Swagger Petstore
+  steps:
+  - name: updatePetWithForm urlencoded
+    requestTimeout: 0
+  - name: getPetById urlencoded
+    requestTimeout: 0
+  - name: updatePetWithForm urlencoded
+    requestTimeout: 0
+  - name: findPetsByTags urlencoded
+    requestTimeout: 0
+  - name: deletePet urlencoded
+    requestTimeout: 0

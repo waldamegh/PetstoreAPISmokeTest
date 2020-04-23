@@ -1,0 +1,14 @@
+test: case
+name: pet CRUD xml
+description: <insert description of test case>
+casedetails:
+  vars:
+    $id: $genInteger(36,541)
+    $name: $genString(6)
+    $status: $genString(8)
+  defaultCollection: Swagger Petstore
+  steps:
+  - name: addPet xml
+    requestTimeout: 0
+  - name: updatePet xml
+    requestTimeout: 0

@@ -1,0 +1,19 @@
+test: step
+name: createUser json
+collection:
+  name: Swagger Petstore
+method: POST
+url: $baseURL/v2/user
+type: raw
+body: |-
+  {
+       "email": "$email",
+       "firstName": "$firstName",
+       "id": "$id",
+       "lastName": "$lastName",
+       "password": "$password",
+       "phone": "$phone",
+       "userStatus": "$userStatus",
+       "username": "$username"
+   }
+requestTimeout: 0

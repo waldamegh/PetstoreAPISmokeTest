@@ -1,0 +1,10 @@
+test: case
+name: store CRUD urlencoded
+description: <insert description of test case>
+casedetails:
+  defaultCollection: Swagger Petstore
+  steps:
+  - name: getOrderById urlencoded
+    requestTimeout: 0
+  - name: deleteOrder urlencoded
+    requestTimeout: 0

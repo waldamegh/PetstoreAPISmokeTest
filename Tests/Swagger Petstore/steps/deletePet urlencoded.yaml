@@ -1,0 +1,9 @@
+test: step
+name: deletePet urlencoded
+collection:
+  name: Swagger Petstore
+method: DELETE
+url: $baseURL/v2/pet/$petId
+headers:
+  api_key: $api_key
+requestTimeout: 0

@@ -1,0 +1,12 @@
+test: load
+name: pet CRUD urlencoded
+loadtype: simulation
+details:
+  testCase: pet CRUD urlencoded
+  users: 100
+  duration: 10s
+  distribution: random
+  asserts:
+  - type: latency
+    metric: 99th
+    expected: 500ms

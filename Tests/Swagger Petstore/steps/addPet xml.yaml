@@ -1,0 +1,17 @@
+test: step
+name: addPet xml
+collection:
+  name: Swagger Petstore
+method: POST
+url: $baseURL/v2/pet
+type: raw
+body: |2-
+   <properties>
+       <category>$category</category>
+       <id>$id</id>
+       <name>$name</name>
+       <photoUrls>$photoUrls</photoUrls>
+       <status>$status</status>
+       <tags>$tags</tags>
+   </properties>
+requestTimeout: 0

@@ -1,0 +1,24 @@
+test: step
+name: uploadFile form-data
+collection:
+  name: Swagger Petstore
+method: POST
+url: $baseURL/v2/pet/$petId/uploadImage
+greps:
+- varname: $code
+  type: text
+  expression: code
+  listname: $codeList
+- varname: $message
+  type: text
+  expression: message
+  listname: $messageList
+- varname: $type
+  type: text
+  expression: type
+  listname: $typeList
+asserts:
+- type: status
+  expected: "200"
+  operator: regex
+requestTimeout: 0

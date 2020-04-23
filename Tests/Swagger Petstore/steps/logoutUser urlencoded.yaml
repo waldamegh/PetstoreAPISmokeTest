@@ -1,0 +1,7 @@
+test: step
+name: logoutUser urlencoded
+collection:
+  name: Swagger Petstore
+method: GET
+url: $baseURL/v2/user/logout
+requestTimeout: 0

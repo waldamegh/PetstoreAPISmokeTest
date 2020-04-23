@@ -1,0 +1,23 @@
+test: case
+name: user CRUD json
+description: <insert description of test case>
+casedetails:
+  vars:
+    $email: $genString(7)
+    $firstName: $genString(6)
+    $id: $genInteger(16,376)
+    $lastName: $genString(8)
+    $password: $genString(6)
+    $phone: $genString(5)
+    $userStatus: $genInteger(77,464)
+    $username: $genString(8)
+  defaultCollection: Swagger Petstore
+  steps:
+  - name: createUser json
+    requestTimeout: 0
+  - name: updateUser json
+    requestTimeout: 0
+  - name: createUsersWithListInput json
+    requestTimeout: 0
+  - name: updateUser json
+    requestTimeout: 0

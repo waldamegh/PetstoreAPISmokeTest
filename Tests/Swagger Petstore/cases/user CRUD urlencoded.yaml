@@ -1,0 +1,12 @@
+test: case
+name: user CRUD urlencoded
+description: <insert description of test case>
+casedetails:
+  defaultCollection: Swagger Petstore
+  steps:
+  - name: getUserByName urlencoded
+    requestTimeout: 0
+  - name: logoutUser urlencoded
+    requestTimeout: 0
+  - name: deleteUser urlencoded
+    requestTimeout: 0

@@ -1,0 +1,44 @@
+test: step
+name: getPetById urlencoded
+collection:
+  name: Swagger Petstore
+method: GET
+url: $baseURL/v2/pet/$petId
+greps:
+- varname: $category
+  type: text
+  expression: category
+  listname: $categoryList
+- varname: $id
+  type: text
+  expression: id
+  listname: $idList
+- varname: $name
+  type: text
+  expression: name
+  listname: $nameList
+- varname: $photoUrls
+  type: text
+  expression: photoUrls
+  listname: $photoUrlsList
+- varname: $status
+  type: text
+  expression: status
+  listname: $statusList
+- varname: $tags
+  type: text
+  expression: tags
+  listname: $tagsList
+asserts:
+- type: status
+  expected: "200"
+  operator: regex
+- key: name
+  type: text
+  expected: $name
+  operator: eq
+- key: photoUrls
+  type: text
+  expected: $photoUrls
+  operator: eq
+requestTimeout: 0

@@ -1,0 +1,17 @@
+test: step
+name: addPet json
+collection:
+  name: Swagger Petstore
+method: POST
+url: $baseURL/v2/pet
+type: raw
+body: |-
+  {
+       "category": "$category",
+       "id": "$id",
+       "name": "$name",
+       "photoUrls": "$photoUrls",
+       "status": "$status",
+       "tags": "$tags"
+   }
+requestTimeout: 0

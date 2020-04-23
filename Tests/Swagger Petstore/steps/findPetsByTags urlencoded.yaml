@@ -1,0 +1,14 @@
+test: step
+name: findPetsByTags urlencoded
+collection:
+  name: Swagger Petstore
+method: GET
+url: $baseURL/v2/pet/findByTags
+queryParams:
+  tags:
+  - $tags
+asserts:
+- type: status
+  expected: "200"
+  operator: regex
+requestTimeout: 0

@@ -1,0 +1,17 @@
+test: step
+name: updatePet xml
+collection:
+  name: Swagger Petstore
+method: PUT
+url: $baseURL/v2/pet
+type: raw
+body: |2-
+   <properties>
+       <id>$id</id>
+       <name>$name</name>
+       <photoUrls>$photoUrls</photoUrls>
+       <status>$status</status>
+       <tags>$tags</tags>
+       <category>$category</category>
+   </properties>
+requestTimeout: 0
